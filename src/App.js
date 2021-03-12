@@ -1,13 +1,19 @@
-import logo from './logo.svg';
+import { Router } from '@reach/router';
+
+import PlayerPage from './pages/player/PlayerPage';
+import SignInPage from './pages/auth/signIn/SignInPage';
+import SignUpPage from './pages/auth/signUp/SignUpPage';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-    </div>
+  const user = null;
+  return user ? (
+    <PlayerPage />
+  ) : (
+    <Router>
+      <SignUpPage path="signUp" />
+      <SignInPage path="/" />
+    </Router>
   );
 }
 
