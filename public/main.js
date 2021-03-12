@@ -4,8 +4,13 @@ require('@electron/remote/main').initialize();
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 588,
+    height: 518,
+    resizable: false,
+    minimizable: true,
+    maximizable: false,
+    autoHideMenuBar: true,
+    frame: true,
     title: 'Streamy',
     webPreferences: {
       enableRemoteModule: true,
