@@ -1,0 +1,49 @@
+/* ===============
+   shelf
+   =============== */
+.player-page {
+}
+.player-page .shelf {
+  background-color: #1f262d;
+  width: 100%;
+  height: 313px;
+}
+.player-page .username {
+  float: right;
+  color: #9a9da3;
+  font-size: 10pt;
+  margin: 1em 2em;
+}
+/* ===============
+   drawer |29px bar
+   =============== */
+.player-page .drawer {
+  width: 100%;
+  height: 378px;
+  position: relative;
+}
+.player-page .drawer .book-description {
+  width: 476px;
+  height: 302px;
+  background-color: #161c21;
+  display: inline-block;
+}
+.player-page .drawer .chapter-list {
+  width: 307px;
+  height: 302px;
+  background-color: #111519;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+}
+/* ===============
+   audio-player
+   =============== */
+.player-page .audio-player {
+  width: 100%;
+  height: 76px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #292e34;
+}
