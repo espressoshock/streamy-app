@@ -1,0 +1,53 @@
+/* ===============
+   chapter-list
+   =============== */
+.chapter-list {
+}
+.chapter-list ol {
+  list-style-type: none;
+  padding: 0;
+}
+.chapter-list ol li {
+  margin-bottom: 0;
+  padding: 10px 25px;
+  transition: all 0.6s;
+  cursor: pointer;
+}
+.chapter-list ol li:hover {
+  background-color: #292e34;
+}
+.chapter-list ol li.active {
+  background-color: #292e34;
+}
+.chapter-list .index {
+  color: #9a9da3;
+  position: relative;
+  top: -10px;
+}
+.chapter-list .details {
+  margin-left: 15px;
+}
+.chapter-list .details,
+.chapter-list .index,
+.chapter-list .duration {
+  display: inline-block;
+}
+.chapter-list .title {
+  color: #c8cace;
+  display: inline-block;
+  font-weight: 500;
+  font-size: 9pt;
+}
+.chapter-list .reader {
+  color: #606369;
+  margin-top: -5px;
+  font-size: 9pt;
+}
+.chapter-list .duration {
+  color: #9a9da3;
+  float: right;
+  position: relative;
+  top: 12px;
+  right: -5px;
+  font-size: 9pt;
+}
