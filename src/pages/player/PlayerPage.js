@@ -6,7 +6,18 @@ class PlayerPage extends Component {
   render() {
     return (
       <div className="player-page">
-        <div className="wrapper">player page</div>
+        <div className="wrapper">
+          <div className="shelf">
+            <div className="header">
+              <div className="username">espressoshock</div>
+            </div>
+          </div>
+          <div className="drawer">
+            <div className="book-description"></div>
+            <div className="chapter-list"></div>
+          </div>
+          <div className="audio-player"></div>
+        </div>
       </div>
     );
   }
