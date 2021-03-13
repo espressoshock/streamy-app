@@ -23,7 +23,7 @@ class FirebaseService {
   };
   updateUsername = (user, username) => {
     return user.updateProfile({
-      username: username,
+      displayName: username,
     });
   };
   signIn = (email, password) => {
