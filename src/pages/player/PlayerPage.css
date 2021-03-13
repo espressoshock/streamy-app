@@ -46,6 +46,12 @@
   right: 0;
 }
 /* ===============
+   audiobook-description
+   =============== */
+.player-page .audiobook-description {
+  margin: 35px 40px;
+}
+/* ===============
    audio-player
    =============== */
 .player-page .audio-player {
