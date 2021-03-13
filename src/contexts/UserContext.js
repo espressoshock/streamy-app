@@ -15,6 +15,17 @@ class UserContextProvider extends Component {
   signIn = (email, password) => {
     return this.state.firebaseService.signIn(email, password);
   };
+  createUser = (username, email, password) => {
+    this.state.firebaseService
+      .createUser(email, password)
+      .then((result) => {
+        console.log('success creation', result);
+        this.state.firebaseService.updateUsername(result.user, username);
+      })
+      .catch((err) => {
+        console.log('error', err);
+      });
+  };
   componentDidMount = () => {
     this.setState({ firebaseService: new FirebaseService() }, () => {
       this.state.firebaseService.auth.onAuthStateChanged((userAuth) => {
@@ -29,6 +40,7 @@ class UserContextProvider extends Component {
         value={{
           ...this.state,
           signIn: this.signIn,
+          createUser: this.createUser,
         }}
       >
         {this.props.children}
