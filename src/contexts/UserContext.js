@@ -7,6 +7,7 @@ class UserContextProvider extends Component {
   state = {
     user: null,
     firebaseService: null,
+    selectedAudiobook: null,
   };
   constructor() {
     super();
@@ -26,6 +27,10 @@ class UserContextProvider extends Component {
         console.log('error', err);
       });
   };
+  selectAudioook = (audiobook) => {
+    this.setState({ selectedAudiobook: audiobook });
+  };
+
   componentDidMount = () => {
     this.setState({ firebaseService: new FirebaseService() }, () => {
       this.state.firebaseService.auth.onAuthStateChanged((userAuth) => {
@@ -41,6 +46,7 @@ class UserContextProvider extends Component {
           ...this.state,
           signIn: this.signIn,
           createUser: this.createUser,
+          selectAudiobook: this.selectAudioook,
         }}
       >
         {this.props.children}

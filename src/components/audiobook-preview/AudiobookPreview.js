@@ -3,10 +3,16 @@ import './AudiobookPreview.css';
 
 class AudiobookPreview extends Component {
   state = {};
+  componentDidMount() {
+    console.log(this.props.selected);
+  }
   render() {
-    const { coverUrl, title, author } = this.props;
+    const { coverUrl, title, author, audiobookID, selected } = this.props;
     return (
-      <div className="audiobook-preview">
+      <div
+        className={`audiobook-preview ${selected ? 'selected' : ''}`}
+        onClick={this.props.onClicked}
+      >
         <div className="container">
           <img src={coverUrl} alt="" className="cover" />
           <div className="text">

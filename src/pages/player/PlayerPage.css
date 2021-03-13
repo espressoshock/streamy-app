@@ -7,22 +7,101 @@
   background-color: #1f262d;
   width: 100%;
   height: 313px;
+  position: relative;
+}
+.player-page .account-dr-wrapper {
+  float: right;
+  margin: 1em 2em;
 }
 .player-page .username {
-  float: right;
+  display: inline-block;
   color: #9a9da3;
   font-size: 10pt;
-  margin: 1em 2em;
+  margin-right: 5px;
+}
+.player-page .MuiPaper-root {
+  background-color: #424242;
+}
+.player-page .chev-down {
+  background-image: url('./assets/icon-chevron-down.png');
+  width: 9.3px;
+  height: 6px;
+  background-size: contain;
+  display: inline-block;
+}
+/* ===============
+   selector
+   =============== */
+.player-page .selector {
+  position: absolute;
+  top: 40px;
+  left: 2em;
+}
+.player-page .selector .select-item {
+  display: inline-block;
+  color: #9a9da3;
+  border-bottom: 2px solid #1b2127;
+  cursor: pointer;
+  font-size: 10pt;
+}
+.player-page .selector .select-item.active {
+  border-bottom: 2px solid #4745ce;
+  color: #dadbdb;
+}
+.player-page .selector .select-item {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.player-page .selector .select-item:last-child {
+  padding-right: 20px;
 }
 /* ===============
    audiobook-list
    =============== */
 .player-page .audiobook-list {
-  position: relative;
-  top: 140px;
+  position: absolute;
+  bottom: 0;
+  min-width: 100%;
+  height: 233px;
   margin: auto auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  overflow-x: auto;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
-
+.player-page .audiobook-list .audiobook-preview:last-child {
+  margin-right: 2em;
+}
+.player-page .audiobook-list .end-spacer {
+  width: 37px;
+  height: 137px;
+}
+/* ===============
+   scrollbar
+   =============== */
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1c2228;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #4d545b;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #4d545b;
+}
+.player-page .audiobook-list .audiobook-preview {
+  margin-top: 50px !important;
+}
 /* ===============
    drawer |29px bar
    =============== */
