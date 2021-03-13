@@ -1,0 +1,53 @@
+/* ===============
+   audiobook-preview
+   =============== */
+.audiobook-preview {
+  transform: scale(1);
+  width: 122px;
+  transition: all 0.4s;
+  display: inline-block;
+  margin-left: 37px;
+}
+.audiobook-preview:hover {
+  transform: scale(1.2);
+  transform-origin: center;
+  box-shadow: 0px 0px 20px 10px rgba(17, 21, 25, 0.5);
+}
+.audiobook-preview .container {
+  width: 122px;
+  height: 137px;
+  background-color: #292e34;
+  position: relative;
+  border-radius: 7px;
+}
+.audiobook-preview img.cover {
+  position: absolute;
+  left: 20px;
+  bottom: 50px;
+  width: 80px;
+  height: 110px;
+  border-radius: 7px;
+  object-fit: cover;
+  background-color: #4d545b;
+  border: none;
+  outline: none;
+}
+.audiobook-preview .text {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 42px;
+}
+.audiobook-preview .text .title {
+  color: #c8cace;
+  font-size: 8pt;
+  text-align: center;
+  margin-bottom: -2px;
+}
+.audiobook-preview .text .author {
+  color: #6b6e74;
+  font-size: 7.5pt;
+  text-align: left;
+  margin-left: 10px;
+}
