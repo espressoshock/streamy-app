@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AudiobookPreview from '../../components/audiobook-preview/AudiobookPreview';
 import AudioBookDescription from '../../components/audiobook-description/AudiobookDescription';
+import ChapterList from '../../components/chapter-list/ChapterList';
 import './PlayerPage.css';
 
 class PlayerPage extends Component {
@@ -19,6 +20,21 @@ class PlayerPage extends Component {
                 title="The Life of John Ruskine"
                 author="William Gershom"
               />
+              <AudiobookPreview
+                coverUrl="https://ia801403.us.archive.org/17/items/lifeofjohnruskin_2103_librivox/lifeofruskin_2103.jpg"
+                title="The Life of John Ruskine"
+                author="William Gershom"
+              />
+              <AudiobookPreview
+                coverUrl="https://ia801403.us.archive.org/17/items/lifeofjohnruskin_2103_librivox/lifeofruskin_2103.jpg"
+                title="The Life of John Ruskine"
+                author="William Gershom"
+              />
+              <AudiobookPreview
+                coverUrl="https://ia801403.us.archive.org/17/items/lifeofjohnruskin_2103_librivox/lifeofruskin_2103.jpg"
+                title="The Life of John Ruskine"
+                author="William Gershom"
+              />
             </div>
           </div>
           <div className="drawer">
@@ -30,7 +46,9 @@ class PlayerPage extends Component {
                 description="W. G. Collingwood became a student of John Ruskin in 1872 when he started his study in University College, Oxford. For many years he dedicated himself to helping Ruskin as his resident assistant."
               />
             </div>
-            <div className="chapter-list"></div>
+            <div className="chapter-list">
+              <ChapterList />
+            </div>
           </div>
           <div className="audio-player"></div>
         </div>
