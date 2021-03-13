@@ -1,0 +1,63 @@
+/* ===============
+   audiobook-description
+   =============== */
+.audiobook-description .container {
+  position: relative;
+}
+.audiobook-description .cover {
+  width: 159px;
+  height: 228px;
+  border-radius: 7px;
+  display: inline-block;
+  object-fit: cover;
+}
+.audiobook-description .text {
+  display: inline-block;
+  position: absolute;
+  top: -0;
+  width: 250px;
+  height: 230px;
+  padding-left: 18px;
+}
+.audiobook-description .text .description {
+  color: #9a9da3;
+  font-size: 10pt;
+}
+.audiobook-description .text .title {
+  color: #c8cace;
+  font-size: 15pt;
+  font-weight: 800;
+  text-align: left;
+  margin-bottom: -2px;
+  margin-top: 10px;
+}
+.audiobook-description .text .author {
+  color: #6b6e74;
+  font-size: 11pt;
+  text-align: left;
+  margin-bottom: 10px;
+}
+/* ===============
+   audiobook-tags
+   =============== */
+.audiobook-description .tag-list {
+  margin-top: 10px;
+}
+.audiobook-description .tag-list .tag {
+  color: #9a9da3;
+  padding: 5px 10px;
+  background-color: #292e34;
+  width: fit-content;
+  border-radius: 7px;
+  font-size: 9pt;
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: 700;
+  transition: color 0.5s;
+}
+.audiobook-description .tag-list .tag:hover {
+  color: white;
+}
+.audiobook-description .tag-list .tag.lang {
+  background-color: #4745ce;
+}
