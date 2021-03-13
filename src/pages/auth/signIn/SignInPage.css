@@ -4,7 +4,8 @@
   height: 77px;
   background-size: contain;
   margin: auto auto;
-  margin-top: 7em;
+  margin-top: 6em;
+  margin-bottom: 3em;
 }
 .signIn-page .hero-title {
   color: #9a9da3;
@@ -50,4 +51,22 @@
   width: 18.5px;
   height: 19px;
   background-size: contain;
+}
+.login-link {
+  font-size: 8pt;
+  color: #9a9da3;
+  font-weight: 400;
+}
+.login-link .link {
+  font-weight: 800;
+  color: #6166f7;
+  text-decoration: none;
+}
+.signIn-page .error-message {
+  color: red;
+  text-align: center;
+  display: none;
+}
+.signIn-page .error-message.visible {
+  display: block;
 }
