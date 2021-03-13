@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100;300;400;500;900&display=swap');
+/* ===============
+   GLOBAL SETTINGS 
+   =============== */
+html,
+body,
+#root {
+  font-family: 'Catamaran', sans-serif;
+  font-weight: 300;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  background-color: #161c21;
+}
+/* ===============
+   card
+   =============== */
+.dark-card {
+  width: 280px;
+  min-height: 263px;
+  background-color: #252a30;
+  border-radius: 8px;
+  margin: auto auto;
+  padding: 1em;
+
+  box-shadow: 0px 0px 30px 20px rgba(17, 21, 25, 0.8);
+}
+.dark-card h1 {
+  font-size: 10pt;
+  color: #bec1c6;
+  text-align: center;
+  font-weight: 800;
+}
+.dark-card h2 {
+  font-size: 9pt;
+  color: #43474d;
+  text-align: center;
+  font-weight: 400;
+  margin-top: -1em;
+}
+.dark-card label {
+  color: #9a9da3;
+  font-size: 9pt;
+  display: block;
+  font-weight: 400;
+  margin-bottom: 0.6em;
+  margin-left: 5px;
+}
+.dark-card input {
+  background-color: #1b2127;
+  border-radius: 7px;
+  outline: none;
+  border: none;
+  width: 233px;
+  padding: 0.2em 1em;
+  height: 31px;
+  margin-bottom: 1em;
+  color: white;
+}
+.dark-card input[type='password'] {
+  letter-spacing: 3px;
+}
+.dark-card form {
+  margin: auto auto;
+  width: 250px;
+}
+.dark-card .action-button {
+  background: rgb(97, 102, 247);
+  background: linear-gradient(
+    61deg,
+    rgba(97, 102, 247, 1) 0%,
+    rgba(146, 80, 238, 1) 100%
+  );
+  font-weight: 700;
+  margin: 1em 6px;
+  height: 38px;
+  color: black;
+}

@@ -1,0 +1,12 @@
+.signUp-page .bold-logo {
+  background-image: url('../../../assets/brand-logo/streamy-textual-logo@2x.png');
+  width: 176.5px;
+  height: 77px;
+  background-size: contain;
+  margin: auto auto;
+  margin-top: 6em;
+  margin-bottom: 3em;
+}
+.signUp-page .login-link {
+  text-align: center;
+}

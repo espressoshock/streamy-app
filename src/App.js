@@ -1,14 +1,19 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Application from './Application';
+
+import UserContextProvider from './contexts/UserContext';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {};
+  render() {
+    return (
+      <UserContextProvider>
+        <Application />
+      </UserContextProvider>
+    );
+  }
 }
 
 export default App;

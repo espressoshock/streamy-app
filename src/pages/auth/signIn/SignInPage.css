@@ -1,0 +1,72 @@
+.signIn-page .bold-logo {
+  background-image: url('../../../assets/brand-logo/streamy-textual-logo@2x.png');
+  width: 176.5px;
+  height: 77px;
+  background-size: contain;
+  margin: auto auto;
+  margin-top: 6em;
+  margin-bottom: 3em;
+}
+.signIn-page .hero-title {
+  color: #9a9da3;
+  font-weight: 300;
+  font-size: 0.9em;
+  text-align: center;
+  margin-top: 4em;
+}
+.signIn-page footer {
+  position: fixed;
+  bottom: 0;
+  color: #545a5f;
+  font-size: 0.8em;
+  width: 100%;
+  text-align: center;
+}
+.signIn-page .signIn-hero-button {
+  background-image: url('./assets/sign-in\ button@2x.png');
+  width: 156px;
+  height: 40px;
+  background-size: contain;
+  margin: auto auto;
+  cursor: pointer;
+  margin-top: 2em;
+}
+.hero-button {
+  padding: 1em 1em;
+}
+.hero-button .google-logo,
+.hero-button .text {
+  display: inline-block;
+}
+.hero-button .text {
+  background: #62c9ee;
+  background: -webkit-linear-gradient(to top right, #62c9ee 0%, #9250ee 100%);
+  background: -moz-linear-gradient(to top right, #62c9ee 0%, #9250ee 100%);
+  background: linear-gradient(to top right, #62c9ee 0%, #9250ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-button .google-logo {
+  background-image: url('../../../assets/miscs/google-g-logo.png');
+  width: 18.5px;
+  height: 19px;
+  background-size: contain;
+}
+.login-link {
+  font-size: 8pt;
+  color: #9a9da3;
+  font-weight: 400;
+}
+.login-link .link {
+  font-weight: 800;
+  color: #6166f7;
+  text-decoration: none;
+}
+.signIn-page .error-message {
+  color: red;
+  text-align: center;
+  display: none;
+}
+.signIn-page .error-message.visible {
+  display: block;
+}
