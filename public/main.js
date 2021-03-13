@@ -5,7 +5,7 @@ require('@electron/remote/main').initialize();
 function createWindow() {
   const win = new BrowserWindow({
     width: 784,
-    height: 691,
+    height: 691 + 29,
     resizable: false,
     minimizable: true,
     maximizable: false,
