@@ -62,7 +62,7 @@ class SignInPage extends Component {
                 onChange={(e) => this.setState({ password: e.target.value })}
                 placeholder="••••••••••••••"
                 required
-                pattern=".{5,}"
+                pattern=".{6,}"
                 title="Minimum 6 chars"
               />
               <div className="login-link">
