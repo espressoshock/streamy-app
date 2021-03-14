@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AudiobookPreview from '../../components/audiobook-preview/AudiobookPreview';
 import AudioBookDescription from '../../components/audiobook-description/AudiobookDescription';
 import ChapterList from '../../components/chapter-list/ChapterList';
-import AudioPlayerControls from '../../components/audio-player-controls/AudioPlayerControls';
+import AudioPlayer from '../../components/audio-player/AudioPlayer';
 
 import { UserContext } from '../../contexts/UserContext';
 import './PlayerPage.css';
@@ -23,6 +23,9 @@ class PlayerPage extends Component {
   };
   isABSelected = (audiobook) => {
     return this.context.selectedAudiobook._id === audiobook._id;
+  };
+  handlePlayingTrackChange = (e) => {
+    console.log('track clicked', e);
   };
   componentDidMount() {}
   openMenu = (e) => {
@@ -107,11 +110,15 @@ class PlayerPage extends Component {
               />
             </div>
             <div className="chapter-list">
-              <ChapterList />
+              <ChapterList
+                onTrackChange={(e) => {
+                  this.handlePlayingTrackChange(e);
+                }}
+              />
             </div>
           </div>
           <div className="audio-player">
-            <AudioPlayerControls />
+            <AudioPlayer />
           </div>
         </div>
       </div>
