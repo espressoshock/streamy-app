@@ -12,7 +12,7 @@ class AudioPlayer extends Component {
     buffered: 0,
     seekable: 0,
     playState: 0, //0: pause, 1: play
-    currentPlayingTime: '00:00:00',
+    currentPlayingTime: 0, //use currentTime in secs
   };
   constructor(props) {
     super(props);
@@ -41,7 +41,9 @@ class AudioPlayer extends Component {
         }); */
       });
       this.audioElRef.current.addEventListener('timeupdate', () => {
-        //
+        this.setState({
+          currentPlayingTime: Math.floor(this.audioElRef.current.currentTime),
+        });
       });
     }
   };
@@ -55,7 +57,10 @@ class AudioPlayer extends Component {
       this.setState({ playState: 0 });
     }
   };
-  handleSliderChange = (e) => {};
+  handleSliderChange = (value) => {
+    this.audioElRef.current.currentTime = value;
+    this.setState({ currentPlayingTime: value });
+  };
   timecodeConverter = (secs) => {
     const hours = Math.floor(secs / 3600);
     const minutes = Math.floor(secs / 60);
@@ -76,21 +81,19 @@ class AudioPlayer extends Component {
           ref={this.audioElRef}
         ></audio>
         <div className="control-progress-bar-wrapper">
-          <div className="start-timecode">00:01:07</div>
+          <div className="start-timecode">
+            {this.timecodeConverter(this.state.currentPlayingTime)}
+          </div>
           <div className="control-progress-bar">
             <Slider
               aria-labelledby="continuous-slider"
               defaultValue={0}
-              value={
-                this.audioElRef.current !== null
-                  ? Math.floor(this.audioElRef.current.currentTime)
-                  : 0
-              }
+              value={this.state.currentPlayingTime}
               step={1}
               min={0}
               max={Math.floor(this.state.trackDuration)}
               className="audio-progressbar"
-              onChange={this.handleSliderChange}
+              onChange={(e, value) => this.handleSliderChange(value)}
               ref={this.sliderElRef}
             />
           </div>
