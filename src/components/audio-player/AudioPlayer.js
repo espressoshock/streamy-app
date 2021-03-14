@@ -23,11 +23,10 @@ class AudioPlayer extends Component {
     this.initAudioListeners();
   }
   initAudioListeners = () => {
-    if (this.audioElRef.current.readyState > 0)
-      this.setState({ trackDuration: this.audioElRef.current.duration });
+    if (this.audioElRef.current.readyState > 0) this.setDuration();
     else {
       this.audioElRef.current.addEventListener('loadedmetadata', () => {
-        this.setState({ trackDuration: this.audioElRef.current.duration });
+        this.setDuration();
         /*  this.setState({
           buffered: this.audioElRef.current.buffered.end(
             this.audioElRef.current.buffered.length - 1
@@ -39,13 +38,21 @@ class AudioPlayer extends Component {
           ),
         }); */
       });
-      this.audioElRef.current.addEventListener('timeupdate', () => {
-        this.setState({
-          currentPlayingTime: Math.floor(this.audioElRef.current.currentTime),
-        });
-      });
     }
+    this.audioElRef.current.addEventListener('timeupdate', () => {
+      this.setState({
+        currentPlayingTime: Math.floor(this.audioElRef.current.currentTime),
+      });
+    });
   };
+  async setDuration() {
+    while (this.audioElRef.current.duration === Infinity) {
+      await new Promise((r) => setTimeout(r, 1000));
+    }
+
+    this.setState({ trackDuration: this.audioElRef.current.duration });
+  }
+
   handlePlayStateChange = (e) => {
     console.log('play state change');
     if (this.state.playState === 0) {
@@ -80,7 +87,6 @@ class AudioPlayer extends Component {
         <audio
           src={this.context.getSelectedAudiotrackURI()}
           preload="metadata"
-          loop
           ref={this.audioElRef}
         ></audio>
         <div className="control-progress-bar-wrapper">
@@ -101,7 +107,10 @@ class AudioPlayer extends Component {
             />
           </div>
           <div className="end-timecode">
-            {this.timecodeConverter(this.state.trackDuration)}
+            {isNaN(this.state.trackDuration) ||
+            !isFinite(this.state.trackDuration)
+              ? '00:00:00'
+              : this.timecodeConverter(this.state.trackDuration)}
           </div>
         </div>
         <AudioPlayerControls

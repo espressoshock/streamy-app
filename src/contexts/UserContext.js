@@ -49,7 +49,6 @@ class UserContextProvider extends Component {
     }
   };
   goNextChapter = () => {
-    console.log('debug', this.getSelChapterPos(), this.getSelTotalChapters());
     if (this.getSelChapterPos() <= this.getSelTotalChapters()) {
       this.selectChapter(
         this.state.selectedAudiobook?.chapters[this.getSelChapterPos() + 1]
@@ -68,7 +67,6 @@ class UserContextProvider extends Component {
     )
       counter++;
 
-    console.log('position: ', counter);
     return counter;
   };
   getSelTotalChapters = () => {
