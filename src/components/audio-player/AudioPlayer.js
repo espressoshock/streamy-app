@@ -103,6 +103,7 @@ class AudioPlayer extends Component {
         </div>
         <AudioPlayerControls
           onPlayStateChange={(e) => this.handlePlayStateChange()}
+          playState={this.state.playState}
         />
       </div>
     );

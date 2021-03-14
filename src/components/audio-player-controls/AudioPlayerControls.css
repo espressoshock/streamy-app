@@ -50,12 +50,21 @@
        margin: auto auto;
       
    }
-    .audio-player-controls .button-controls .pause-control{
-        background: url('./assets/icon-controls-pause.svg');
-        background-size: 7px 11px;
-        width: 7px;
-        height: 11px;
+    .audio-player-controls .button-controls .playback-control{
+        width: 14px;
+        height: 11px;;
         display: inline-block;
+    }
+    .audio-player-controls .button-controls .pause-control{
+         background: url('./assets/icon-controls-pause.svg');
+        background-size: 7px 11px;
+        background-repeat: no-repeat;
+        background-position: 2px 0;
+    }
+    .audio-player-controls .button-controls .play-control{
+         background: url('./assets/icon-controls-play.svg');
+        background-size: 14.5px 11px;
+        
     }
     .audio-player-controls .button-controls .audiotrack-pager{
         width: fit-content;

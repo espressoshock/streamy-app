@@ -1,29 +1,16 @@
 import React, { Component } from 'react';
 import './AudioPlayerControls.css';
-import Slider from '@material-ui/core/Slider';
 
 class AudioPlayerControls extends Component {
   state = {};
   render() {
     return (
       <div className="audio-player-controls">
-        {/*    <div className="control-progress-bar-wrapper">
-          <div className="start-timecode">00:01:07</div>
-          <div className="control-progress-bar">
-            <Slider
-              aria-labelledby="continuous-slider"
-              defaultValue={50}
-              step={1}
-              min={0}
-              max={100}
-              className="audio-progressbar"
-            />
-          </div>
-          <div className="end-timecode">00:02:04</div>
-        </div> */}
         <div className="button-controls">
           <div
-            className="control pause-control"
+            className={`control playback-control ${
+              this.props.playState === 1 ? 'pause-control' : 'play-control'
+            }`}
             onClick={this.props.onPlayStateChange}
           ></div>
           <div className="control prev-control"></div>
