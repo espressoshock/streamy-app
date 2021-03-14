@@ -12,18 +12,8 @@ class PlayerPage extends Component {
   static contextType = UserContext;
   state = {
     anchorEl: null,
-    audiobooks: null,
-    selectedAudiobook: {
-      title: '',
-      author: '',
-    },
-    audiobookPreviewOb: null,
   };
-  async fetchAudioBooks() {
-    const response = await fetch('http://localhost:3001/audiobooks/');
-    const audiobooks = await response.json();
-    return audiobooks;
-  }
+
   handleABookSelection = (audiobook) => {
     console.log('clicked', audiobook);
     this.context.selectAudiobook(audiobook);
@@ -32,30 +22,7 @@ class PlayerPage extends Component {
   isABSelected = (audiobook) => {
     return this.context.selectedAudiobook._id === audiobook._id;
   };
-  componentDidMount() {
-    this.fetchAudioBooks().then((audiobooks) => {
-      console.log('audiobooks:', audiobooks);
-      this.setState({ audiobooks: audiobooks });
-      const items = [];
-      for (const [index, audiobook] of audiobooks.data.entries()) {
-        items.push(
-          <AudiobookPreview
-            coverUrl={audiobook.coverURL}
-            title={audiobook.title}
-            author={audiobook.author}
-            audiobookID={audiobook._id}
-            //selected={this.context.selectedAudiobook._id === audiobook._id}
-            onClicked={(e) => {
-              this.handleABookSelection(audiobook);
-            }}
-          />
-        );
-      }
-      this.setState({ audiobookPreviewOb: items });
-      this.setState({ selectedAudiobook: audiobooks.data[0] });
-      this.context.selectAudiobook(audiobooks.data[0]);
-    });
-  }
+  componentDidMount() {}
   openMenu = (e) => {
     this.setState({ anchorEl: e.currentTarget });
   };
@@ -107,22 +74,30 @@ class PlayerPage extends Component {
               <div className="select-item">Favorites</div>
             </div>
             <div className="audiobook-list">
-              {this.state.audiobookPreviewOb}
-
-              {this.state.audiobookPreviewOb}
-              {this.state.audiobookPreviewOb}
-              {this.state.audiobookPreviewOb}
-              {this.state.audiobookPreviewOb}
+              {this.context.audiobooks.map((audiobook, key) => {
+                return (
+                  <AudiobookPreview
+                    coverUrl={audiobook.coverURL}
+                    title={audiobook.title}
+                    author={audiobook.author}
+                    audiobookID={audiobook._id}
+                    //selected={this.context.selectedAudiobook._id === audiobook._id}
+                    onClicked={(e) => {
+                      this.handleABookSelection(audiobook);
+                    }}
+                  />
+                );
+              })}
               <div className="end-spacer"></div>
             </div>
           </div>
           <div className="drawer">
             <div className="book-description">
               <AudioBookDescription
-                //coverUrl={this.state.selectedAudiobook.coverURL}
-                //title={this.state.selectedAudiobook.title}
-                author={this.state.selectedAudiobook.author}
-                //description={this.state.selectedAudiobook.description}
+                coverUrl={this.context.selectedAudiobook.coverURL}
+                title={this.context.selectedAudiobook.title}
+                author={this.context.selectedAudiobook.author}
+                description={this.context.selectedAudiobook.description}
               />
             </div>
             <div className="chapter-list">
