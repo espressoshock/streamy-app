@@ -9,20 +9,53 @@ class AudioPlayer extends Component {
   static contextType = UserContext;
   state = {
     trackDuration: '00:00:00',
+    buffered: 0,
+    seekable: 0,
+    playState: 0, //0: pause, 1: play
+    currentPlayingTime: '00:00:00',
   };
   constructor(props) {
     super(props);
     this.audioElRef = React.createRef();
+    this.sliderElRef = React.createRef();
   }
   componentDidMount() {
     this.initAudioListeners();
+    console.log('slider', this.sliderElRef.current);
   }
   initAudioListeners = () => {
-    console.log('audio', this.audioElRef.current);
-    this.audioElRef.current.addEventListener('loadedmetadata', () => {
+    if (this.audioElRef.current.readyState > 0)
       this.setState({ trackDuration: this.audioElRef.current.duration });
-    });
+    else {
+      this.audioElRef.current.addEventListener('loadedmetadata', () => {
+        this.setState({ trackDuration: this.audioElRef.current.duration });
+        /*  this.setState({
+          buffered: this.audioElRef.current.buffered.end(
+            this.audioElRef.current.buffered.length - 1
+          ),
+        });
+        this.setState({
+          seekable: this.audioElRef.current.seekable.end(
+            this.audioElRef.current.seekable.length - 1
+          ),
+        }); */
+      });
+      this.audioElRef.current.addEventListener('timeupdate', () => {
+        //
+      });
+    }
   };
+  handlePlayStateChange = (e) => {
+    console.log('play state change');
+    if (this.state.playState === 0) {
+      this.audioElRef.current.play();
+      this.setState({ playState: 1 });
+    } else {
+      this.audioElRef.current.pause();
+      this.setState({ playState: 0 });
+    }
+  };
+  handleSliderChange = (e) => {};
   timecodeConverter = (secs) => {
     const hours = Math.floor(secs / 3600);
     const minutes = Math.floor(secs / 60);
@@ -47,18 +80,27 @@ class AudioPlayer extends Component {
           <div className="control-progress-bar">
             <Slider
               aria-labelledby="continuous-slider"
-              defaultValue={50}
+              defaultValue={0}
+              value={
+                this.audioElRef.current !== null
+                  ? Math.floor(this.audioElRef.current.currentTime)
+                  : 0
+              }
               step={1}
               min={0}
-              max={100}
+              max={Math.floor(this.state.trackDuration)}
               className="audio-progressbar"
+              onChange={this.handleSliderChange}
+              ref={this.sliderElRef}
             />
           </div>
           <div className="end-timecode">
             {this.timecodeConverter(this.state.trackDuration)}
           </div>
         </div>
-        <AudioPlayerControls />
+        <AudioPlayerControls
+          onPlayStateChange={(e) => this.handlePlayStateChange()}
+        />
       </div>
     );
   }

@@ -22,7 +22,10 @@ class AudioPlayerControls extends Component {
           <div className="end-timecode">00:02:04</div>
         </div> */}
         <div className="button-controls">
-          <div className="control pause-control"></div>
+          <div
+            className="control pause-control"
+            onClick={this.props.onPlayStateChange}
+          ></div>
           <div className="control prev-control"></div>
           <div className="control audiotrack-pager">
             <div className="current-audiotrack">02</div>
