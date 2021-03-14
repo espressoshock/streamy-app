@@ -111,4 +111,6 @@
         position: relative;
         top: -1px;
         cursor: pointer;
+        width: 45px;
+        text-align: left;
     }

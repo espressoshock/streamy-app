@@ -16,8 +16,9 @@ class AudioPlayerControls extends Component {
     this.setState({ anchorEl: null });
   };
   updatePlaybackSpeed = (playbackSpeed) => {
-    //this.closePlayBackSpeedMenu();
-    //this.setState({ playbackSpeed: playbackSpeed });
+    this.setState({ playbackSpeed: playbackSpeed });
+    this.closePlayBackSpeedMenu();
+    this.props.onPlaybackSpeedChange(playbackSpeed);
   };
 
   render() {
@@ -57,18 +58,24 @@ class AudioPlayerControls extends Component {
               keepMounted
               open={Boolean(this.state.anchorEl)}
               onClose={(e) => {
-                this.closeMenu(e);
+                this.closePlayBackSpeedMenu(e);
               }}
             >
-              <MenuItem onClick={this.updatePlaybackSpeed(0.5)}>0.5x</MenuItem>
-              <MenuItem onClick={this.updatePlaybackSpeed(0.75)}>
+              <MenuItem onClick={() => this.updatePlaybackSpeed(0.5)}>
+                0.5x
+              </MenuItem>
+              <MenuItem onClick={() => this.updatePlaybackSpeed(0.75)}>
                 0.75x
               </MenuItem>
-              <MenuItem onClick={this.updatePlaybackSpeed(1)}>Normal</MenuItem>
-              <MenuItem onClick={this.updatePlaybackSpeed(1.25)}>
+              <MenuItem onClick={() => this.updatePlaybackSpeed(1)}>
+                Normal
+              </MenuItem>
+              <MenuItem onClick={() => this.updatePlaybackSpeed(1.25)}>
                 1.25x
               </MenuItem>
-              <MenuItem onClick={this.updatePlaybackSpeed(1.5)}>1.5x</MenuItem>
+              <MenuItem onClick={() => this.updatePlaybackSpeed(1.5)}>
+                1.5x
+              </MenuItem>
             </Menu>
           </div>
         </div>

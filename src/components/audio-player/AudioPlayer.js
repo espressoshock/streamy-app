@@ -61,6 +61,10 @@ class AudioPlayer extends Component {
     this.audioElRef.current.currentTime = value;
     this.setState({ currentPlayingTime: value });
   };
+  handlePlaybackSpeedChange = (speed) => {
+    if (this.audioElRef.current !== null)
+      this.audioElRef.current.playbackRate = speed;
+  };
   timecodeConverter = (secs) => {
     const hours = Math.floor(secs / 3600);
     const minutes = Math.floor(secs / 60);
@@ -104,6 +108,7 @@ class AudioPlayer extends Component {
         <AudioPlayerControls
           onPlayStateChange={(e) => this.handlePlayStateChange()}
           playState={this.state.playState}
+          onPlaybackSpeedChange={(e) => this.handlePlaybackSpeedChange(e)}
         />
       </div>
     );
