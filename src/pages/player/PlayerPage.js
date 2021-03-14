@@ -81,7 +81,9 @@ class PlayerPage extends Component {
                     title={audiobook.title}
                     author={audiobook.author}
                     audiobookID={audiobook._id}
-                    //selected={this.context.selectedAudiobook._id === audiobook._id}
+                    selected={
+                      this.context.selectedAudiobook._id === audiobook._id
+                    }
                     onClicked={(e) => {
                       this.handleABookSelection(audiobook);
                     }}
@@ -98,6 +100,8 @@ class PlayerPage extends Component {
                 title={this.context.selectedAudiobook.title}
                 author={this.context.selectedAudiobook.author}
                 description={this.context.selectedAudiobook.description}
+                genre={this.context.selectedAudiobook.genre}
+                language={this.context.selectedAudiobook.language}
               />
             </div>
             <div className="chapter-list">

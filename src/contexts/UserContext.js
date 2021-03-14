@@ -7,7 +7,7 @@ class UserContextProvider extends Component {
   state = {
     user: null,
     firebaseService: null,
-    selectedAudiobook: null,
+    selectedAudiobook: '',
     audiobooks: [],
   };
   constructor() {
