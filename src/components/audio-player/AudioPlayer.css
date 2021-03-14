@@ -1,6 +1,10 @@
 /* ===============
    audio-player
    =============== */
+   .audio-player .control-progress-bar-wrapper{
+        width: 580px;
+       margin: auto auto;
+   }
    .audio-player .start-timecode, 
    .audio-player .end-timecode{
     display: inline-block;
@@ -13,6 +17,10 @@
    .audio-player .end-timecode{
     display: inline-block;
     color: #63656A;
+    width: 70px;
+   }
+   .audio-player .end-timecode{
+       text-align: right;
    }
    .audio-player .control-progress-bar-wrapper{
        margin-top: 2px;
@@ -20,7 +28,7 @@
    .audio-player .control-progress-bar{
        width: 434px;
        display: inline-block;
-       margin: 0em 1em;
+      
        position: relative;
        top: 9px;
    }
