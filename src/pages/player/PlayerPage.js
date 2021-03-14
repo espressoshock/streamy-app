@@ -83,7 +83,7 @@ class PlayerPage extends Component {
               {this.context.audiobooks.map((audiobook, key) => {
                 return (
                   <AudiobookPreview
-                    coverUrl={audiobook.coverURL}
+                    coverImage={audiobook.coverImage}
                     title={audiobook.title}
                     author={audiobook.author}
                     audiobookID={audiobook._id}
@@ -102,7 +102,7 @@ class PlayerPage extends Component {
           <div className="drawer">
             <div className="book-description">
               <AudioBookDescription
-                coverUrl={this.context.selectedAudiobook.coverURL}
+                coverImage={this.context.selectedAudiobook.coverImage}
                 title={this.context.selectedAudiobook.title}
                 author={this.context.selectedAudiobook.author}
                 description={this.context.selectedAudiobook.description}

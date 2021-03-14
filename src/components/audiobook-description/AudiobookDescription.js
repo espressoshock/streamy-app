@@ -8,14 +8,14 @@ class AudiobookDescription extends Component {
       title,
       author,
       description,
-      coverUrl,
+      coverImage,
       genre,
       language,
     } = this.props;
     return (
       <div className="audiobook-description">
         <div className="container">
-          <img src={coverUrl} alt="" className="cover" />
+          <img src={coverImage} alt="" className="cover" />
           <div className="text">
             <div className="title">{title}</div>
             <div className="author">{author}</div>
