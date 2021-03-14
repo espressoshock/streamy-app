@@ -21,7 +21,6 @@ class AudioPlayer extends Component {
   }
   componentDidMount() {
     this.initAudioListeners();
-    console.log('slider', this.sliderElRef.current);
   }
   initAudioListeners = () => {
     if (this.audioElRef.current.readyState > 0)
