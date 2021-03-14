@@ -11,6 +11,7 @@ class UserContextProvider extends Component {
       chapters: [],
     },
     audiobooks: [],
+    selectedChapter: '',
   };
   constructor() {
     super();
@@ -36,7 +37,9 @@ class UserContextProvider extends Component {
       this.setState({ selectedAudiobook: audiobook });
     });
   };
-
+  selectChapter = (chapter) => {
+    this.setState({ selectedChapter: chapter });
+  };
   componentDidMount = () => {
     this.setState({ firebaseService: new FirebaseService() }, () => {
       this.state.firebaseService.auth.onAuthStateChanged((userAuth) => {
@@ -76,6 +79,7 @@ class UserContextProvider extends Component {
           signIn: this.signIn,
           createUser: this.createUser,
           selectAudiobook: this.selectAudioook,
+          selectChapter: this.selectChapter,
         }}
       >
         {this.props.children}
