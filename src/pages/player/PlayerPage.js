@@ -92,6 +92,7 @@ class PlayerPage extends Component {
                     onClicked={(e) => {
                       this.handleABookSelection(audiobook);
                     }}
+                    key={key}
                   />
                 );
               })}
