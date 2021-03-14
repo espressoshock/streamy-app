@@ -8,6 +8,7 @@ class UserContextProvider extends Component {
     user: null,
     firebaseService: null,
     selectedAudiobook: null,
+    audiobooks: [],
   };
   constructor() {
     super();
@@ -34,11 +35,22 @@ class UserContextProvider extends Component {
   componentDidMount = () => {
     this.setState({ firebaseService: new FirebaseService() }, () => {
       this.state.firebaseService.auth.onAuthStateChanged((userAuth) => {
-        if (this.state.firebaseService.auth.currentUser)
+        if (this.state.firebaseService.auth.currentUser) {
           this.setState({ user: userAuth });
+          this.fetchAudioBooks().then((audiobooks) => {
+            console.log('audiobooks:', audiobooks);
+            this.setState({ audiobooks: audiobooks.data });
+            this.setState({ selectedAudiobook: audiobooks.data[0] });
+          });
+        }
       });
     });
   };
+  async fetchAudioBooks() {
+    const response = await fetch('http://localhost:3001/audiobooks/');
+    const audiobooks = await response.json();
+    return audiobooks;
+  }
   render() {
     return (
       <UserContext.Provider
