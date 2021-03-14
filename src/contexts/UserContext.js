@@ -7,7 +7,9 @@ class UserContextProvider extends Component {
   state = {
     user: null,
     firebaseService: null,
-    selectedAudiobook: '',
+    selectedAudiobook: {
+      chapters: [],
+    },
     audiobooks: [],
   };
   constructor() {
@@ -29,7 +31,10 @@ class UserContextProvider extends Component {
       });
   };
   selectAudioook = (audiobook) => {
-    this.setState({ selectedAudiobook: audiobook });
+    this.fetchChapters(audiobook._id).then((chapters) => {
+      this.mergeAudiobookChapters(audiobook, chapters.chapters);
+      this.setState({ selectedAudiobook: audiobook });
+    });
   };
 
   componentDidMount = () => {
@@ -40,7 +45,7 @@ class UserContextProvider extends Component {
           this.fetchAudioBooks().then((audiobooks) => {
             console.log('audiobooks:', audiobooks);
             this.setState({ audiobooks: audiobooks.data });
-            this.setState({ selectedAudiobook: audiobooks.data[0] });
+            this.selectAudioook(audiobooks.data[0]);
           });
         }
       });
@@ -51,6 +56,18 @@ class UserContextProvider extends Component {
     const audiobooks = await response.json();
     return audiobooks;
   }
+  async fetchChapters(audiobookID) {
+    const response = await fetch(
+      'http://localhost:3001/audiobooks/' + audiobookID + '/chapters'
+    );
+    const chapters = await response.json();
+    return chapters;
+  }
+  mergeAudiobookChapters = (audiobook, chapters) => {
+    for (let i = 0; i < audiobook.chapters.length; i++)
+      audiobook.chapters[i] = chapters[i];
+    return audiobook;
+  };
   render() {
     return (
       <UserContext.Provider
