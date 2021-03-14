@@ -68,7 +68,6 @@ class UserContextProvider extends Component {
     return chapters;
   }
   getSelectedAudiotrackURI = () => {
-    console.log('uri', this.state.selectedChapter.audiotrackID);
     return (
       'http://localhost:3001/audiotracks/' +
       this.state.selectedChapter.audiotrackID

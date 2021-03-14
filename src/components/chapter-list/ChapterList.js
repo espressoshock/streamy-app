@@ -10,6 +10,10 @@ class ChapterList extends Component {
     this.props.onTrackChange(chapterID);
   };
 
+  isChaperSelected = (chapterID) => {
+    return this.context.selectedChapter._id === chapterID;
+  };
+
   render() {
     return (
       <div className="chapter-list">
@@ -17,7 +21,13 @@ class ChapterList extends Component {
           <ol>
             {this.context.selectedAudiobook.chapters.map((chapter, key) => {
               return (
-                <li key={key} onClick={() => this.handleTrackClick(chapter)}>
+                <li
+                  key={key}
+                  onClick={() => this.handleTrackClick(chapter)}
+                  className={`${
+                    this.isChaperSelected(chapter._id) ? 'selected' : ''
+                  }`}
+                >
                   <div className="index">{('0' + chapter.index).slice(-2)}</div>
                   <div className="details">
                     <div className="title">{chapter.title}</div>
