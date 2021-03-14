@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import AudiobookPreview from '../../components/audiobook-preview/AudiobookPreview';
 import AudioBookDescription from '../../components/audiobook-description/AudiobookDescription';
 import ChapterList from '../../components/chapter-list/ChapterList';
+import AudioPlayerControls from '../../components/audio-player-controls/AudioPlayerControls';
+
 import { UserContext } from '../../contexts/UserContext';
 import './PlayerPage.css';
 
@@ -108,7 +110,9 @@ class PlayerPage extends Component {
               <ChapterList />
             </div>
           </div>
-          <div className="audio-player"></div>
+          <div className="audio-player">
+            <AudioPlayerControls />
+          </div>
         </div>
       </div>
     );
