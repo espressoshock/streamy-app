@@ -35,6 +35,7 @@ class UserContextProvider extends Component {
     this.fetchChapters(audiobook._id).then((chapters) => {
       this.mergeAudiobookChapters(audiobook, chapters.chapters);
       this.setState({ selectedAudiobook: audiobook });
+      this.selectChapter(chapters.chapters[0]);
     });
   };
   selectChapter = (chapter) => {
@@ -66,6 +67,13 @@ class UserContextProvider extends Component {
     const chapters = await response.json();
     return chapters;
   }
+  getSelectedAudiotrackURI = () => {
+    console.log('uri', this.state.selectedChapter.audiotrackID);
+    return (
+      'http://localhost:3001/audiotracks/' +
+      this.state.selectedChapter.audiotrackID
+    );
+  };
   mergeAudiobookChapters = (audiobook, chapters) => {
     for (let i = 0; i < audiobook.chapters.length; i++)
       audiobook.chapters[i] = chapters[i];
@@ -80,6 +88,7 @@ class UserContextProvider extends Component {
           createUser: this.createUser,
           selectAudiobook: this.selectAudioook,
           selectChapter: this.selectChapter,
+          getSelectedAudiotrackURI: this.getSelectedAudiotrackURI,
         }}
       >
         {this.props.children}
