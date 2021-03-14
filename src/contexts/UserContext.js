@@ -20,6 +20,9 @@ class UserContextProvider extends Component {
   signIn = (email, password) => {
     return this.state.firebaseService.signIn(email, password);
   };
+  signOut = () => {
+    return this.state.firebaseService.signOut();
+  };
   createUser = (username, email, password) => {
     this.state.firebaseService
       .createUser(email, password)
@@ -116,6 +119,7 @@ class UserContextProvider extends Component {
           ...this.state,
           signIn: this.signIn,
           createUser: this.createUser,
+          signOut: this.signOut,
           selectAudiobook: this.selectAudioook,
           selectChapter: this.selectChapter,
           getSelectedAudiotrackURI: this.getSelectedAudiotrackURI,

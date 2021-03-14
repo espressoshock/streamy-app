@@ -64,8 +64,9 @@ class AudioPlayer extends Component {
     }
   };
   handleSliderChange = (value) => {
-    this.audioElRef.current.currentTime = value;
-    this.setState({ currentPlayingTime: value });
+    this.setState({ currentPlayingTime: value }, () => {
+      this.audioElRef.current.currentTime = value;
+    });
   };
   handlePlaybackSpeedChange = (speed) => {
     if (this.audioElRef.current !== null)

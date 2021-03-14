@@ -9,6 +9,7 @@ import './PlayerPage.css';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { navigate } from '@reach/router';
 
 class PlayerPage extends Component {
   static contextType = UserContext;
@@ -34,6 +35,15 @@ class PlayerPage extends Component {
   };
   closeMenu = (e) => {
     this.setState({ anchorEl: null });
+  };
+  signOut = (e) => {
+    this.context
+      .signOut()
+      .then((res) => {
+        navigate('/', { replace: true });
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
   };
   render() {
     return (
@@ -71,7 +81,7 @@ class PlayerPage extends Component {
                   }}
                 >
                   <MenuItem onClick={this.closeMenu}>Add audiotrack</MenuItem>
-                  <MenuItem onClick={this.closeMenu}>Logout</MenuItem>
+                  <MenuItem onClick={(e) => this.signOut()}>Logout</MenuItem>
                 </Menu>
               </div>
             </div>
