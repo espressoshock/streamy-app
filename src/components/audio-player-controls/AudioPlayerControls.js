@@ -22,6 +22,13 @@ class AudioPlayerControls extends Component {
     this.closePlayBackSpeedMenu();
     this.props.onPlaybackSpeedChange(playbackSpeed);
   };
+  goPrevChapter = (e) => {
+    this.context.goPrevChapter();
+  };
+  goNextChapter = (e) => {
+    console.log('go next');
+    this.context.goNextChapter();
+  };
   calculateSelectedChapterNumber() {
     if (this.context.selectedAudiobook !== undefined) {
       let counter = 0;
@@ -48,19 +55,30 @@ class AudioPlayerControls extends Component {
             }`}
             onClick={this.props.onPlayStateChange}
           ></div>
-          <div className="control prev-control"></div>
+          <div
+            className={`control prev-control ${
+              this.context?.getSelChapterPos() <= 0 ? 'disabled' : ''
+            }`}
+            onClick={(e) => this.goPrevChapter(e)}
+          ></div>
           <div className="control audiotrack-pager">
             <div className="current-audiotrack">
-              {('0' + this.context.selectedChapter.index).slice(-2) ?? '00'}
+              {('0' + (this.context?.getSelChapterPos() + 1)).slice(-2) ?? '00'}
             </div>
             <div className="separator">/</div>
             <div className="audiotrack-length">
-              {('0' + this.context.selectedAudiobook.chapters.length).slice(
-                -2
-              ) ?? '00'}
+              {('0' + this.context?.getSelTotalChapters()).slice(-2) ?? '00'}
             </div>
           </div>
-          <div className="control next-control"></div>
+          <div
+            className={`control next-control ${
+              this.context?.getSelChapterPos() >=
+              this.context?.getSelTotalChapters() - 1
+                ? 'disabled'
+                : ''
+            }`}
+            onClick={(e) => this.goNextChapter(e)}
+          ></div>
           <div className="playback-speed-wrapper">
             <div
               aria-controls="simple-menu"

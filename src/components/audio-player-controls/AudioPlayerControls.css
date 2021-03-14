@@ -1,116 +1,128 @@
 /* ===============
    audio-player-controls
    =============== */
-   .audio-player-controls{
-       width: 580px;
-       height: 100%;
-       margin: auto auto;
-   }
+.audio-player-controls {
+  width: 580px;
+  height: 100%;
+  margin: auto auto;
+}
 /* ===============
    control-progress-bar
    =============== */
-   .audio-player-controls .start-timecode, 
-   .audio-player-controls .end-timecode{
-    display: inline-block;
-    color: #63656A;
-   }
-   .audio-player-controls .control-progress-bar-wrapper{
-       margin-top: 2px;
-   }
-   .audio-player-controls .control-progress-bar{
-       width: 434px;
-       display: inline-block;
-       margin: 0em 1em;
-       position: relative;
-       top: 9px;
-   }
-   .audio-player-controls .control-progress-bar input[type='range']{
-       width: 100%;
-       appearance: none;
-       background: #1B2127;
-       outline: none;
-       transition: all .2s;
-   }
-   .audio-player-controls .control-progress-bar .MuiSlider-rail{
-       background-color: #1B2127!important;
-       height: 4px;
-   }
-   .audio-player-controls .control-progress-bar .MuiSlider-track{
-       background-color: #858890!important;
-       height: 4px;
-   }
-   .audio-player-controls .control-progress-bar .MuiSlider-thumb{
-       background-color: #858890!important;
-   }
+.audio-player-controls .start-timecode,
+.audio-player-controls .end-timecode {
+  display: inline-block;
+  color: #63656a;
+}
+.audio-player-controls .control-progress-bar-wrapper {
+  margin-top: 2px;
+}
+.audio-player-controls .control-progress-bar {
+  width: 434px;
+  display: inline-block;
+  margin: 0em 1em;
+  position: relative;
+  top: 9px;
+}
+.audio-player-controls .control-progress-bar input[type='range'] {
+  width: 100%;
+  appearance: none;
+  background: #1b2127;
+  outline: none;
+  transition: all 0.2s;
+}
+.audio-player-controls .control-progress-bar .MuiSlider-rail {
+  background-color: #1b2127 !important;
+  height: 4px;
+}
+.audio-player-controls .control-progress-bar .MuiSlider-track {
+  background-color: #858890 !important;
+  height: 4px;
+}
+.audio-player-controls .control-progress-bar .MuiSlider-thumb {
+  background-color: #858890 !important;
+}
 /* ===============
    button-controls
    =============== */
-   .audio-player-controls .button-controls{
-       width: fit-content;
-       margin: auto auto;
-      
-   }
-    .audio-player-controls .button-controls .playback-control{
-        width: 14px;
-        height: 11px;;
-        display: inline-block;
-    }
-    .audio-player-controls .button-controls .pause-control{
-         background: url('./assets/icon-controls-pause.svg');
-        background-size: 7px 11px;
-        background-repeat: no-repeat;
-        background-position: 2px 0;
-    }
-    .audio-player-controls .button-controls .play-control{
-         background: url('./assets/icon-controls-play.svg');
-        background-size: 14.5px 11px;
-        
-    }
-    .audio-player-controls .button-controls .audiotrack-pager{
-        width: fit-content;
-        display: inline-block;
-        cursor: default;
-    }
-    .audio-player-controls .control{
-        margin: 0em 1em;
-        cursor: pointer;
-    }
-    .audio-player-controls .button-controls .prev-control{
-        background: url('./assets/icon-controls-prev.svg');
-        background-size: 7px 13px;
-        width: 7px;
-        height: 13px;
-        display: inline-block;
-    }
-    .audio-player-controls .button-controls .next-control{
-        background: url('./assets/icon-controls-next.svg');
-        background-size: 7px 13px;
-        width: 7px;
-        height: 13px;
-        display: inline-block;
-    }
-    .audio-player-controls .button-controls .audiotrack-pager div{
-        display: inline-block;
-    }
+.audio-player-controls .button-controls {
+  width: fit-content;
+  margin: auto auto;
+}
+.audio-player-controls .button-controls .playback-control {
+  width: 14px;
+  height: 11px;
+  display: inline-block;
+}
+.audio-player-controls .button-controls .pause-control {
+  background: url('./assets/icon-controls-pause.svg');
+  background-size: 7px 11px;
+  background-repeat: no-repeat;
+  background-position: 2px 0;
+}
+.audio-player-controls .button-controls .play-control {
+  background: url('./assets/icon-controls-play.svg');
+  background-size: 14.5px 11px;
+}
+.audio-player-controls .button-controls .audiotrack-pager {
+  width: fit-content;
+  display: inline-block;
+  cursor: default;
+}
+.audio-player-controls .control {
+  margin: 0em 1em;
+  cursor: pointer;
+}
+.audio-player-controls .button-controls .prev-control {
+  background: url('./assets/icon-controls-prev.svg');
+  background-size: 7px 13px;
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 13px;
+  display: inline-block;
+}
+.audio-player-controls .button-controls .next-control {
+  background: url('./assets/icon-controls-next.svg');
+  background-size: 7px 13px;
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 13px;
+  display: inline-block;
+}
+.audio-player-controls .button-controls .prev-control.disabled {
+  background: url('./assets/icon-controls-prev-disabled.svg');
+  background-size: 7px 13px;
+  background-repeat: no-repeat;
+  cursor: default;
+}
+.audio-player-controls .button-controls .next-control.disabled {
+  background: url('./assets/icon-controls-next-disabled.svg');
+  background-size: 7px 13px;
+  background-repeat: no-repeat;
+  cursor: default;
+}
+.audio-player-controls .button-controls .audiotrack-pager div {
+  display: inline-block;
+}
 
-    .audio-player-controls .button-controls .audiotrack-pager .separator{
-        padding: 0 3px;
-    }
-    .audio-player-controls .button-controls .audiotrack-pager .separator,
-    .audio-player-controls .button-controls .audiotrack-pager .audiotrack-length{
-        color: #63656a; 
-    }
-    .audio-player-controls .button-controls .audiotrack-pager .current-audiotrack{
-        color: #c6c7cc;
-    }
-    .audio-player-controls .button-controls .playback-speed-wrapper{
-        display: inline-block;
-        color: #63656a;
-        font-weight: 800;
-        font-size: 12pt;
-        position: relative;
-        top: -1px;
-        cursor: pointer;
-        width: 45px;
-        text-align: left;
-    }
+.audio-player-controls .button-controls .audiotrack-pager .separator {
+  padding: 0 3px;
+}
+.audio-player-controls .button-controls .audiotrack-pager .separator,
+.audio-player-controls .button-controls .audiotrack-pager .audiotrack-length {
+  color: #63656a;
+}
+.audio-player-controls .button-controls .audiotrack-pager .current-audiotrack {
+  color: #c6c7cc;
+}
+.audio-player-controls .button-controls .playback-speed-wrapper {
+  display: inline-block;
+  color: #63656a;
+  font-weight: 800;
+  font-size: 12pt;
+  position: relative;
+  top: -1px;
+  cursor: pointer;
+  width: 45px;
+  text-align: left;
+}

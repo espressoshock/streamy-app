@@ -11,7 +11,7 @@ class ChapterList extends Component {
   };
 
   isChaperSelected = (chapterID) => {
-    return this.context.selectedChapter._id === chapterID;
+    return this.context.selectedChapter?._id === chapterID;
   };
 
   render() {
