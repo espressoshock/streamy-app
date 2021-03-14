@@ -68,10 +68,10 @@ class UserContextProvider extends Component {
     return chapters;
   }
   getSelectedAudiotrackURI = () => {
-    return (
-      'http://localhost:3001/audiotracks/' +
-      this.state.selectedChapter.audiotrackID
-    );
+    return this.state.selectedChapter.audiotrackID !== undefined
+      ? 'http://localhost:3001/audiotracks/' +
+          this.state.selectedChapter.audiotrackID
+      : '';
   };
   mergeAudiobookChapters = (audiobook, chapters) => {
     for (let i = 0; i < audiobook.chapters.length; i++)
