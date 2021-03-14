@@ -1,0 +1,44 @@
+/* ===============
+   audio-player
+   =============== */
+   .audio-player .start-timecode, 
+   .audio-player .end-timecode{
+    display: inline-block;
+    color: #63656A;
+   }
+   /* ===============
+   control-progress-bar
+   =============== */
+   .audio-player .start-timecode, 
+   .audio-player .end-timecode{
+    display: inline-block;
+    color: #63656A;
+   }
+   .audio-player .control-progress-bar-wrapper{
+       margin-top: 2px;
+   }
+   .audio-player .control-progress-bar{
+       width: 434px;
+       display: inline-block;
+       margin: 0em 1em;
+       position: relative;
+       top: 9px;
+   }
+   .audio-player .control-progress-bar input[type='range']{
+       width: 100%;
+       appearance: none;
+       background: #1B2127;
+       outline: none;
+       transition: all .2s;
+   }
+   .audio-player .control-progress-bar .MuiSlider-rail{
+       background-color: #1B2127!important;
+       height: 4px;
+   }
+   .audio-player .control-progress-bar .MuiSlider-track{
+       background-color: #858890!important;
+       height: 4px;
+   }
+   .audio-player .control-progress-bar .MuiSlider-thumb{
+       background-color: #858890!important;
+   }
