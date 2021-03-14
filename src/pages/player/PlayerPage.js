@@ -86,7 +86,6 @@ class PlayerPage extends Component {
                     coverImage={audiobook.coverImage}
                     title={audiobook.title}
                     author={audiobook.author}
-                    audiobookID={audiobook._id}
                     selected={
                       this.context.selectedAudiobook._id === audiobook._id
                     }

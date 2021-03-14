@@ -103,3 +103,12 @@
     .audio-player-controls .button-controls .audiotrack-pager .current-audiotrack{
         color: #c6c7cc;
     }
+    .audio-player-controls .button-controls .playback-speed-wrapper{
+        display: inline-block;
+        color: #63656a;
+        font-weight: 800;
+        font-size: 12pt;
+        position: relative;
+        top: -1px;
+        cursor: pointer;
+    }
