@@ -1,46 +1,28 @@
 import React, { Component } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 import './ChapterList.css';
 
 class ChapterList extends Component {
+  static contextType = UserContext;
   state = {};
+
   render() {
-    const { title, author, description, coverUrl, tags } = this.props;
     return (
       <div className="chapter-list">
         <div className="container">
           <ol>
-            <li>
-              <div className="index">01</div>
-              <div className="details">
-                <div className="title">Preface to the seventh edition</div>
-                <div className="reader">Xiaoyan Arrowsmith</div>
-              </div>
-              <div className="duration">00:02:04</div>
-            </li>
-            <li className="active">
-              <div className="index">01</div>
-              <div className="details">
-                <div className="title">Preface to the seventh edition</div>
-                <div className="reader">Xiaoyan Arrowsmith</div>
-              </div>
-              <div className="duration">00:02:04</div>
-            </li>
-            <li>
-              <div className="index">01</div>
-              <div className="details">
-                <div className="title">Preface to the seventh edition</div>
-                <div className="reader">Xiaoyan Arrowsmith</div>
-              </div>
-              <div className="duration">00:02:04</div>
-            </li>
-            <li>
-              <div className="index">01</div>
-              <div className="details">
-                <div className="title">Preface to the seventh edition</div>
-                <div className="reader">Xiaoyan Arrowsmith</div>
-              </div>
-              <div className="duration">00:02:04</div>
-            </li>
+            {this.context.selectedAudiobook.chapters.map((chapter, key) => {
+              return (
+                <li key={key}>
+                  <div className="index">{('0' + chapter.index).slice(-2)}</div>
+                  <div className="details">
+                    <div className="title">{chapter.title}</div>
+                    <div className="reader">{chapter.reader}</div>
+                  </div>
+                  <div className="duration">{chapter.duration}</div>
+                </li>
+              );
+            })}
           </ol>
         </div>
       </div>
