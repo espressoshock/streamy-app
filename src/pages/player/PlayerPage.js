@@ -25,6 +25,7 @@ class PlayerPage extends Component {
     return this.context.selectedAudiobook._id === audiobook._id;
   };
   handlePlayingTrackChange = (e) => {
+    this.context.selectChapter(e);
     console.log('track clicked', e);
   };
   componentDidMount() {}

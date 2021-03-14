@@ -17,10 +17,7 @@ class ChapterList extends Component {
           <ol>
             {this.context.selectedAudiobook.chapters.map((chapter, key) => {
               return (
-                <li
-                  key={key}
-                  onClick={() => this.handleTrackClick(chapter._id)}
-                >
+                <li key={key} onClick={() => this.handleTrackClick(chapter)}>
                   <div className="index">{('0' + chapter.index).slice(-2)}</div>
                   <div className="details">
                     <div className="title">{chapter.title}</div>

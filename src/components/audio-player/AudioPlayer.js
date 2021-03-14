@@ -75,7 +75,7 @@ class AudioPlayer extends Component {
     return (
       <div className="audio-player">
         <audio
-          src="http://static.kevvv.in/sounds/callmemaybe.mp3"
+          src={this.context.getSelectedAudiotrackURI()}
           preload="metadata"
           loop
           ref={this.audioElRef}
