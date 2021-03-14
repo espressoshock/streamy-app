@@ -41,6 +41,39 @@ class UserContextProvider extends Component {
   selectChapter = (chapter) => {
     this.setState({ selectedChapter: chapter });
   };
+  goPrevChapter = () => {
+    if (this.getSelChapterPos() > 0) {
+      this.selectChapter(
+        this.state.selectedAudiobook.chapters[this.getSelChapterPos() - 1]
+      );
+    }
+  };
+  goNextChapter = () => {
+    console.log('debug', this.getSelChapterPos(), this.getSelTotalChapters());
+    if (this.getSelChapterPos() <= this.getSelTotalChapters()) {
+      this.selectChapter(
+        this.state.selectedAudiobook?.chapters[this.getSelChapterPos() + 1]
+      );
+    }
+  };
+  getSelChapterPos = () => {
+    //0-based
+    let counter = 0;
+    for (
+      let i = 0;
+      i < this.state.selectedAudiobook?.chapters?.length &&
+      this.state.selectedAudiobook?.chapters[i]?._id !==
+        this.state.selectedChapter?._id;
+      i++
+    )
+      counter++;
+
+    console.log('position: ', counter);
+    return counter;
+  };
+  getSelTotalChapters = () => {
+    return this.state.selectedAudiobook?.chapters?.length;
+  };
   componentDidMount = () => {
     this.setState({ firebaseService: new FirebaseService() }, () => {
       this.state.firebaseService.auth.onAuthStateChanged((userAuth) => {
@@ -68,9 +101,9 @@ class UserContextProvider extends Component {
     return chapters;
   }
   getSelectedAudiotrackURI = () => {
-    return this.state.selectedChapter.audiotrackID !== undefined
+    return this.state.selectedChapter?.audiotrackID !== undefined
       ? 'http://localhost:3001/audiotracks/' +
-          this.state.selectedChapter.audiotrackID
+          this.state.selectedChapter?.audiotrackID
       : '';
   };
   mergeAudiobookChapters = (audiobook, chapters) => {
@@ -88,6 +121,10 @@ class UserContextProvider extends Component {
           selectAudiobook: this.selectAudioook,
           selectChapter: this.selectChapter,
           getSelectedAudiotrackURI: this.getSelectedAudiotrackURI,
+          goPrevChapter: this.goPrevChapter,
+          goNextChapter: this.goNextChapter,
+          getSelChapterPos: this.getSelChapterPos,
+          getSelTotalChapters: this.getSelTotalChapters,
         }}
       >
         {this.props.children}
