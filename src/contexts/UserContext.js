@@ -79,7 +79,10 @@ class UserContextProvider extends Component {
     this.setState({ firebaseService: new FirebaseService() }, () => {
       this.state.firebaseService.auth.onAuthStateChanged((userAuth) => {
         if (this.state.firebaseService.auth.currentUser) {
-          this.setState({ user: userAuth });
+          userAuth.getIdTokenResult().then((idToken) => {
+            userAuth.isAdmin = idToken.claims.admin ?? false;
+            this.setState({ user: userAuth });
+          });
           this.fetchAudioBooks().then((audiobooks) => {
             console.log('audiobooks:', audiobooks);
             this.setState({ audiobooks: audiobooks.data });
