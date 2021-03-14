@@ -32,7 +32,7 @@ class SignUpPage extends Component {
             <h1>Create an account</h1>
             <h2>Register and enjoy free audiobooks!</h2>
             <form action="" onSubmit={(e) => e.preventDefault()}>
-              <label for="username">Username</label>
+              <label>Username</label>
               <input
                 type="text"
                 name="username"
@@ -42,7 +42,7 @@ class SignUpPage extends Component {
                 pattern=".{5,}"
                 title="Minimum 5 chars"
               />
-              <label for="email">Email</label>
+              <label>Email</label>
               <input
                 type="email"
                 name="email"
@@ -50,7 +50,7 @@ class SignUpPage extends Component {
                 placeholder="example@email.com"
                 required
               />
-              <label for="password">Password</label>
+              <label>Password</label>
               <input
                 type="password"
                 name="password"
