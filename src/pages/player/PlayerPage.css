@@ -123,6 +123,7 @@
   display: inline-block;
   position: absolute;
   right: 0;
+  overflow-y: auto;
 }
 /* ===============
    audiobook-description

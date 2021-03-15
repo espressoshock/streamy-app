@@ -1,0 +1,139 @@
+/* ===============
+   add-audiobook-page
+   =============== */
+.add-audiobook-page {
+}
+.add-audiobook-page .close-button {
+  background: url('./assets/icon-close.svg');
+  background-size: 11px 11px;
+  width: 11px;
+  height: 11px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+/* ===============
+   builder-common
+   =============== */
+.add-audiobook-page .header {
+  margin: 80px 120px;
+}
+.add-audiobook-page .header .stepper {
+  color: #43464b;
+  font-weight: 700;
+  font-size: 10pt;
+}
+
+.add-audiobook-page .header h1 {
+  color: #63656a;
+  font-weight: 600;
+  margin-top: -7px;
+  margin-bottom: -25px;
+}
+
+.add-audiobook-page .header h2 {
+  color: #494c51;
+  font-weight: 400;
+  font-size: 13pt;
+}
+.add-audiobook-page .tool-wrapper .drag-target {
+  width: 186px;
+  height: 254px;
+  border: 3px dashed #63656a;
+  border-radius: 7px;
+  position: relative;
+  display: inline-block;
+  top: -83px;
+  transition: all 0.6s;
+}
+.add-audiobook-page .tool-wrapper .drag-target.interact {
+  background-color: white;
+  transform: scale(1.2);
+}
+.add-audiobook-page .tool-wrapper .drag-target .cover-preview-loader {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 178px;
+  height: 246px;
+  object-fit: cover;
+  z-index: 1;
+  border-radius: 7px;
+}
+.cover-preview-loader.hidden {
+  display: none;
+}
+.audiobook-add-builder .drag-wrapper,
+.audiobook-add-builder .fields {
+  display: inline-block;
+}
+.add-audiobook-page .fields {
+  width: 300px;
+  margin-left: 30px;
+}
+.add-audiobook-page .tool-wrapper .drag-target .text {
+  width: 166px;
+  color: #9a9da3;
+  font-weight: 300;
+  font-size: 11pt;
+  width: 100px;
+  text-align: center;
+  position: absolute;
+  left: 44px;
+  top: 98px;
+}
+.add-audiobook-page .fields input {
+  width: 245px;
+}
+.audiobook-add-builder .tool-wrapper {
+  margin-left: 140px;
+  margin-top: -42px;
+  display: inline-block;
+  position: relative;
+  left: 13px;
+}
+.audiobook-add-builder input.half-size {
+  width: 100px;
+}
+.add-audiobook-page .f-unit {
+  display: inline-block;
+  margin-right: 20px;
+}
+.add-audiobook-page textarea {
+  width: 245px;
+  height: 78px;
+  resize: none;
+}
+
+.add-audiobook-page .action-button {
+  background-color: #6664f6;
+  color: #161c21;
+  padding: 7px;
+  text-align: center;
+  width: 180px;
+  border-radius: 7px;
+  font-weight: 600;
+  margin: auto;
+  position: relative;
+  top: 30px;
+  left: -30px;
+}
+.add-audiobook-page input.action-button {
+  width: 193px;
+  height: 40px;
+  left: -88px;
+  top: 35px;
+}
+.add-audiobook-page input[type='file'] {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  position: absolute;
+  top: 309px;
+  left: 83px;
+}

@@ -5,7 +5,7 @@ require('@electron/remote/main').initialize();
 function createWindow() {
   const win = new BrowserWindow({
     width: 784,
-    height: 691 + 29,
+    height: 720,
     resizable: false,
     minimizable: true,
     maximizable: false,
@@ -16,9 +16,11 @@ function createWindow() {
       enableRemoteModule: true,
     },
   });
+  win.setTitle('Streamy');
   win.loadURL('http://localhost:3000/');
 }
 
+app.setName('Streamy');
 app.on('ready', createWindow);
 
 app.on('window-all-closed', function () {

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100;300;400;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100;300;400;500;600;900&display=swap');
 /* ===============
    GLOBAL SETTINGS 
    =============== */
@@ -14,6 +14,10 @@ body,
 }
 .pointer {
   cursor: pointer;
+}
+a.link {
+  text-decoration: none;
+  color: black;
 }
 /* ===============
    card
@@ -41,7 +45,8 @@ body,
   font-weight: 400;
   margin-top: -1em;
 }
-.dark-card label {
+.dark-card label,
+.custom-field label {
   color: #9a9da3;
   font-size: 9pt;
   display: block;
@@ -49,7 +54,9 @@ body,
   margin-bottom: 0.6em;
   margin-left: 5px;
 }
-.dark-card input {
+.dark-card input,
+.custom-field input,
+.custom-field textarea {
   background-color: #1b2127;
   border-radius: 7px;
   outline: none;
@@ -60,7 +67,8 @@ body,
   margin-bottom: 1em;
   color: white;
 }
-.dark-card input[type='password'] {
+.dark-card input[type='password'],
+.custom-field input[type='password'] {
   letter-spacing: 3px;
 }
 .dark-card form {

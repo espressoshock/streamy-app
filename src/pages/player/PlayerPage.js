@@ -3,6 +3,7 @@ import AudiobookPreview from '../../components/audiobook-preview/AudiobookPrevie
 import AudioBookDescription from '../../components/audiobook-description/AudiobookDescription';
 import ChapterList from '../../components/chapter-list/ChapterList';
 import AudioPlayer from '../../components/audio-player/AudioPlayer';
+import { Link } from '@reach/router';
 
 import { UserContext } from '../../contexts/UserContext';
 import './PlayerPage.css';
@@ -29,7 +30,9 @@ class PlayerPage extends Component {
     this.context.selectChapter(e);
     console.log('track clicked', e);
   };
-  componentDidMount() {}
+  componentDidMount() {
+    this.context?.refreshContext();
+  }
   openMenu = (e) => {
     this.setState({ anchorEl: e.currentTarget });
   };
@@ -80,14 +83,18 @@ class PlayerPage extends Component {
                     this.closeMenu(e);
                   }}
                 >
-                  <MenuItem onClick={this.closeMenu}>Add audiotrack</MenuItem>
+                  <MenuItem>
+                    <Link to="/add" className="link">
+                      Add audiobook
+                    </Link>
+                  </MenuItem>
                   <MenuItem onClick={(e) => this.signOut()}>Logout</MenuItem>
                 </Menu>
               </div>
             </div>
             <div className="selector">
               <div className="select-item active">Audiobooks</div>
-              <div className="select-item">Favorites</div>
+              {/*  <div className="select-item">Favorites</div> */}
             </div>
             <div className="audiobook-list">
               {this.context.audiobooks.map((audiobook, key) => {

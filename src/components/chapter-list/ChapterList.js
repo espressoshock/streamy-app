@@ -19,21 +19,23 @@ class ChapterList extends Component {
       <div className="chapter-list">
         <div className="container">
           <ol>
-            {this.context.selectedAudiobook.chapters.map((chapter, key) => {
+            {this.context.selectedAudiobook?.chapters.map((chapter, key) => {
               return (
                 <li
                   key={key}
                   onClick={() => this.handleTrackClick(chapter)}
                   className={`${
-                    this.isChaperSelected(chapter._id) ? 'selected' : ''
+                    this.isChaperSelected(chapter?._id) ? 'selected' : ''
                   }`}
                 >
-                  <div className="index">{('0' + chapter.index).slice(-2)}</div>
-                  <div className="details">
-                    <div className="title">{chapter.title}</div>
-                    <div className="reader">{chapter.reader}</div>
+                  <div className="index">
+                    {('0' + chapter?.index).slice(-2)}
                   </div>
-                  <div className="duration">{chapter.duration}</div>
+                  <div className="details">
+                    <div className="title">{chapter?.title}</div>
+                    <div className="reader">{chapter?.reader}</div>
+                  </div>
+                  <div className="duration">{chapter?.duration}</div>
                 </li>
               );
             })}

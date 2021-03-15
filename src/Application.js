@@ -4,6 +4,7 @@ import { Router } from '@reach/router';
 import PlayerPage from './pages/player/PlayerPage';
 import SignInPage from './pages/auth/signIn/SignInPage';
 import SignUpPage from './pages/auth/signUp/SignUpPage';
+import AddAudiobookPage from './pages/admin-tools/add-audiobook/AddAudiobookPage';
 
 import { UserContext } from './contexts/UserContext';
 
@@ -15,11 +16,14 @@ class Application extends Component {
   state = {};
   render() {
     return this.context.user ? (
-      <PlayerPage />
+      <Router>
+        <PlayerPage path="/player" default />
+        <AddAudiobookPage path="/add" />
+      </Router>
     ) : (
       <Router>
         <SignUpPage path="signUp" />
-        <SignInPage path="/" />
+        <SignInPage path="/" default />
       </Router>
     );
   }
