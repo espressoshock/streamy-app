@@ -41,6 +41,19 @@
   position: relative;
   top: -50px;
 }
-.chapter-add-builder .action-button {
+
+.chapter-add-builder input.action-button {
   top: 15px;
+  left: 25px;
+}
+.chapter-add-builder input[type='file'] {
+  top: 309px;
+  left: -14px;
+}
+.chapter-add-builder .a-name-viewer {
+  width: 251px;
+  position: absolute;
+  left: -75px;
+  top: 9px;
+  text-align: center;
 }
