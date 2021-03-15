@@ -8,7 +8,7 @@ import ChapterAddBuilder from '../../../components/chapter-add-builder/ChapterAd
 class AddAudiobookPage extends Component {
   static contextType = UserContext;
   state = {
-    processStep: 2,
+    processStep: 1,
     audiobookID: null,
   };
   nextStep = (res) => {

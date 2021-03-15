@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import './ChapterAddBuilder.css';
 
+import qs from 'qs';
+
 class ChapterAddBuilder extends Component {
   static contextType = UserContext;
   state = {
@@ -15,6 +17,7 @@ class ChapterAddBuilder extends Component {
     audiotrackData: null,
     index: 1,
     audiotrackID: null,
+    chapterID: null,
   };
   constructor(props) {
     super(props);
@@ -50,27 +53,52 @@ class ChapterAddBuilder extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
+
     const chapterData = {
       index: this.state.index,
       title: this.state.title,
       reader: this.state.reader,
       duration: this.getCurrentDuration(),
+      audiobookID: this.props.audiobookID,
     };
 
     let cTmp = this.state.chapters;
     cTmp.push(chapterData);
+
     this.setState({ chapters: cTmp });
     this.setState({ index: this.state.index + 1 });
 
     let formData = new FormData();
-    formData.append('name', 'test');
+    formData.append('name', this.state.title);
     formData.append('audiotrack', this.state.audiotrackData);
 
     //post audiotrack
     this.postAudiotrack(formData)
-      .then((res) => {
-        console.log('res:', res);
+      .then((audiotrack_data) => {
+        console.log('audiotrack_data:', audiotrack_data);
+
+        chapterData.audiotrackID = audiotrack_data.audiotrackID;
+
+        this.setState({ audiotrackID: audiotrack_data.audiotrackID });
         this.setState({ audiotrackData: null });
+
+        this.postChapter(
+          this.props.audiobookID,
+          qs.stringify(chapterData)
+        ).then((chapter_response) => {
+          console.log('chapter response', chapter_response);
+          console.log('chapter id: ', chapter_response.data._id);
+          const chapter_id = chapter_response.data._id;
+          const putRequest = {
+            chapterID: chapter_id,
+          };
+          this.putChapterRef(
+            this.props.audiobookID,
+            qs.stringify(putRequest)
+          ).then((audiobook_response) => {
+            console.log('audiobook response: ', audiobook_response);
+          });
+        });
       })
       .catch((err) => console.log('erro', err));
 
@@ -113,6 +141,36 @@ class ChapterAddBuilder extends Component {
       cache: 'no-cache',
       body: audiotrack,
     });
+    return response.json();
+  }
+  async putChapterRef(audiobookID, chapterIDUpdate) {
+    const response = await fetch(
+      'http://localhost:3001/audiobooks/' + audiobookID,
+      {
+        method: 'PUT',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: chapterIDUpdate,
+      }
+    );
+    return response.json();
+  }
+  async postChapter(audiobookID, chapter) {
+    const response = await fetch(
+      'http://localhost:3001/audiobooks/' + audiobookID + '/chapters',
+      {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: chapter,
+      }
+    );
     return response.json();
   }
   render() {
