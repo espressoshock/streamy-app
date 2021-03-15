@@ -3,16 +3,23 @@ import { UserContext } from '../../../contexts/UserContext';
 import './AddAudiobookPage.css';
 
 import AudiobookAddBuilder from '../../../components/audiobook-add-builder/AudiobookAddBuilder';
+import ChapterAddBuilder from '../../../components/chapter-add-builder/ChapterAddBuilder';
 
 class AddAudiobookPage extends Component {
   static contextType = UserContext;
   state = {
-    processStep: 1,
+    processStep: 2,
   };
   render() {
-    const view = this.state.processStep === 1 ? <AudiobookAddBuilder /> : null;
+    const view =
+      this.state.processStep === 1 ? (
+        <AudiobookAddBuilder />
+      ) : (
+        <ChapterAddBuilder />
+      );
     return (
       <div className="add-audiobook-page">
+        <div className="close-button" />
         <div className="wrapper">{view}</div>
       </div>
     );

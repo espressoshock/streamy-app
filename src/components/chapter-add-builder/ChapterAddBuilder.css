@@ -1,0 +1,46 @@
+/* ===============
+   chapter-add-builder
+   =============== */
+.chapter-add-builder {
+  position: relative;
+  top: -25px;
+}
+.chapter-add-builder .chapter-list {
+  width: 305px;
+  height: 430px;
+  display: inline-block;
+  background-color: #111519;
+  border-radius: 7px;
+  overflow-y: auto;
+  margin-left: 72px;
+  margin-top: -50px;
+}
+.chapter-add-builder .fields,
+.chapter-add-builder .fields .f-unit,
+.chapter-add-builder .fields .separator {
+  display: inline-block;
+}
+.chapter-add-builder .fields .u-size {
+  width: 20px;
+  text-align: center;
+}
+.chapter-add-builder .fields .separator {
+  color: #63656a;
+  margin: 0 10px;
+}
+.chapter-add-builder .drag-wrapper .drag-target {
+  width: 245px;
+  height: 77px;
+  top: 0px;
+}
+.chapter-add-builder .drag-wrapper .drag-target .text {
+  left: 71px;
+  top: 14px;
+}
+.chapter-add-builder .fields {
+  position: relative;
+  top: -50px;
+}
+.chapter-add-builder .action-button {
+  top: 15px;
+}
