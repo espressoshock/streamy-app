@@ -19,23 +19,53 @@
   height: 230px;
   padding-left: 18px;
 }
-.audiobook-description .text .description {
+.audiobook-description .text .description textarea {
   color: #9a9da3;
   font-size: 10pt;
+  width: 250px;
+  height: 100px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: all 0.4s;
 }
-.audiobook-description .text .title {
+.audiobook-description .text .description textarea.editable:hover {
+  background-color: #292e34;
+  border-radius: 4px;
+}
+.audiobook-description .text .title input {
   color: #c8cace;
   font-size: 15pt;
   font-weight: 800;
   text-align: left;
   margin-bottom: -2px;
-  margin-top: 10px;
+  margin-top: 2px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: all 0.4s;
 }
-.audiobook-description .text .author {
+.audiobook-description .text .title input.editable:hover {
+  background-color: #292e34;
+  border-radius: 4px;
+}
+::placeholder::placeholder {
   color: #6b6e74;
+}
+.audiobook-description .text .author input {
+  color: #c8cace;
   font-size: 11pt;
   text-align: left;
   margin-bottom: 10px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: all 0.4s;
+}
+.audiobook-description .text .author input.editable:hover {
+  background-color: #292e34;
+
+  border-radius: 4px;
 }
 /* ===============
    audiobook-tags
@@ -60,4 +90,23 @@
 }
 .audiobook-description .tag-list .tag.lang {
   background-color: #4745ce;
+}
+.audiobook-description .update-button {
+  background-color: #6664f6;
+  color: #161c21;
+  padding: 5px 10px;
+  font-weight: 800;
+  text-align: center;
+  width: 50px;
+  border-radius: 7px;
+  font-weight: 600;
+  position: relative;
+  top: -5px;
+  float: right;
+  cursor: pointer;
+  display: none;
+}
+
+.audiobook-description .update-button.visible {
+  display: block;
 }

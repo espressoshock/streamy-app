@@ -1,6 +1,8 @@
 import React, { Component, createContext } from 'react';
 import FirebaseService from '../services/FirebaseService';
 
+import qs from 'qs';
+
 export const UserContext = createContext();
 
 class UserContextProvider extends Component {
@@ -100,6 +102,21 @@ class UserContextProvider extends Component {
     });
   };
 
+  async updateAudiobook(audiobookID, audiobook) {
+    const response = await fetch(
+      'http://localhost:3001/audiobooks/' + audiobookID,
+      {
+        method: 'PUT',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: qs.stringify(audiobook),
+      }
+    );
+    return response.json();
+  }
   async fetchAudioBooks() {
     const response = await fetch('http://localhost:3001/audiobooks/');
     const audiobooks = await response.json();
@@ -139,6 +156,7 @@ class UserContextProvider extends Component {
           getSelChapterPos: this.getSelChapterPos,
           getSelTotalChapters: this.getSelTotalChapters,
           refreshContext: this.refreshContext,
+          updateAudiobook: this.updateAudiobook,
         }}
       >
         {this.props.children}
