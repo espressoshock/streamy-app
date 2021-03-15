@@ -125,7 +125,7 @@ class AudiobookAddBuilder extends Component {
                 placeholder="W. G. Collingwood became a student of John Ruskin in 1872 when he started his study in University College, Oxford. "
                 required
               ></textarea>
-              <input type="file" ref={this.fileInput}></input>
+              <input type="file" ref={this.fileInput} required></input>
               <input type="submit" value="Continue" className="action-button" />
             </form>
           </div>

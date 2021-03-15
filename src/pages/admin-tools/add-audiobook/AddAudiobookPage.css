@@ -133,4 +133,7 @@
   overflow: hidden;
   position: absolute;
   z-index: -1;
+  position: absolute;
+  top: 309px;
+  left: 83px;
 }
