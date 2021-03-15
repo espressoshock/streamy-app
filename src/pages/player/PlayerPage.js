@@ -49,6 +49,15 @@ class PlayerPage extends Component {
       .catch((err) => console.log(err));
   };
   render() {
+    const menuItem = this.context?.user.isAdmin ? (
+      <MenuItem>
+        <Link to="/add" className="link">
+          Add audiobook
+        </Link>
+      </MenuItem>
+    ) : (
+      ''
+    );
     return (
       <div className="player-page">
         <div className="wrapper">
@@ -83,11 +92,7 @@ class PlayerPage extends Component {
                     this.closeMenu(e);
                   }}
                 >
-                  <MenuItem>
-                    <Link to="/add" className="link">
-                      Add audiobook
-                    </Link>
-                  </MenuItem>
+                  {menuItem}
                   <MenuItem onClick={(e) => this.signOut()}>Logout</MenuItem>
                 </Menu>
               </div>
