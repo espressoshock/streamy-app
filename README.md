@@ -1,8 +1,9 @@
 # Streamy<!-- omit in toc -->
-> Free audiobooks anytime, anywhere
+>Modern audiobook streaming platform powered by _MongoDB_, _ElectronJS_, _NodeJS_ and _firebase serverless cloud-functions_
+
 
 <span style="display:block;text-align:center">
-    <img src="./assets/streamy-hero-iamge.png" alt="streamy hero image">
+    <img src="./assets/streamy-hero-image.png" alt="streamy hero image">
 </span>
 
 ## Table of contents <!-- omit in toc -->
@@ -42,9 +43,8 @@ Streamy user interface has been designed from scratch with the users' needs in m
 
 Here's a collection of all the most notable views within the _Streamy_ cross-platform application
 
-
-
 ##### Splashscreen 
+>ElectronJS loading splash screen
 
 <span style="display:block;text-align:center">
     <img src="./assets/view-splashscreen.png" alt="Streamy splashscreen">
@@ -86,5 +86,21 @@ Here's a collection of all the most notable views within the _Streamy_ cross-pla
     <img src="./assets/streamy-logo.png" alt="Streamy splashscreen">
 </span>
 
-
 ### Framework and technologies
+
+1. App packaging and distribution: 
+   1. `ElectronJS`
+      1. electron-forge | electron-builder | electron-packager
+2. Front-end JS Framework: 
+   1. `ReactJS`
+      1. Router: @reach-router
+3. Version control workflow: 
+   1. `GithubFlow`
+4. Data DB: 
+   1. `MongoDB` with `GridFS`
+5. Users DB:
+   1. `Firebase auth` with custom `claims`
+6. REST API:   
+   1. `NodeJS` and `ExpressJS`
+7. MServices: 
+   1. `Firebase cloud functions`
