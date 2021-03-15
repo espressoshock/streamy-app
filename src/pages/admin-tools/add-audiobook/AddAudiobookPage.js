@@ -21,7 +21,7 @@ class AddAudiobookPage extends Component {
       this.state.processStep === 1 ? (
         <AudiobookAddBuilder onSuccess={(e) => this.nextStep(e)} />
       ) : (
-        <ChapterAddBuilder />
+        <ChapterAddBuilder audiobookID={this.state.audiobookID} />
       );
     return (
       <div className="add-audiobook-page">

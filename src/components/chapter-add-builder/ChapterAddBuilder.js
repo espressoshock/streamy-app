@@ -13,6 +13,8 @@ class ChapterAddBuilder extends Component {
     durationSS: '',
     chapters: [],
     audiotrackData: null,
+    index: 1,
+    audiotrackID: null,
   };
   constructor(props) {
     super(props);
@@ -42,29 +44,77 @@ class ChapterAddBuilder extends Component {
     e.preventDefault();
     this.setState({ uploaderActive: false });
     this.fileInput.current.files = e.dataTransfer.files;
-    this.setState({ audiotrackData: e.dataTransfer.files });
+    this.setState({ audiotrackData: e.dataTransfer.files[0] });
 
     console.log('file: ', e.dataTransfer.files);
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    const data = {
+    const chapterData = {
+      index: this.state.index,
       title: this.state.title,
-      author: this.state.author,
-      genre: this.state.genre,
-      language: this.state.language,
-      description: this.state.description,
-      coverImage: this.state.coverImagePreview,
+      reader: this.state.reader,
+      duration: this.getCurrentDuration(),
     };
-    /* this.postAudiobook(qs.stringify(data)).then((res) => {
-      this.props.onSuccess(res);
-    }); */
+
+    let cTmp = this.state.chapters;
+    cTmp.push(chapterData);
+    this.setState({ chapters: cTmp });
+    this.setState({ index: this.state.index + 1 });
+
+    let formData = new FormData();
+    formData.append('name', 'test');
+    formData.append('audiotrack', this.state.audiotrackData);
+
+    //post audiotrack
+    this.postAudiotrack(formData)
+      .then((res) => {
+        console.log('res:', res);
+        this.setState({ audiotrackData: null });
+      })
+      .catch((err) => console.log('erro', err));
+
+    e.target.reset();
   };
+
   getNameViewer = () => {
     return (
-      <div className="a-name-viewer">{this.state.audiotrackData[0].name}</div>
+      <div className="a-name-viewer">{this.state.audiotrackData.name}</div>
     );
   };
+  buildChapterListItem = (index, title, reader, key) => {
+    return (
+      <li key={key}>
+        <div className="index">{this.formatIndex(index)}</div>
+        <div className="details">
+          <div className="title">{title}</div>
+          <div className="reader">{reader}</div>
+        </div>
+        <div className="duration">{this.getCurrentDuration()}</div>
+      </li>
+    );
+  };
+  getCurrentDuration = (h, m, s) => {
+    return (
+      this.state.durationHH +
+      ':' +
+      this.state.durationMM +
+      ':' +
+      this.state.durationSS
+    );
+  };
+  formatIndex = (index) => {
+    return ('0' + index).slice(-2);
+  };
+  async postAudiotrack(audiotrack) {
+    const response = await fetch('http://localhost:3001/audiotracks', {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      body: audiotrack,
+    });
+    return response.json();
+  }
   render() {
     return (
       <div className="chapter-add-builder">
@@ -78,50 +128,22 @@ class ChapterAddBuilder extends Component {
         <div className="tool-wrapper">
           <div className="chapter-list">
             <ol>
-              <li>
-                <div className="index">01</div>
-                <div className="details">
-                  <div className="title">Preface to the seventh edition</div>
-                  <div className="reader">Xiaoyan Arrowsmith</div>
-                </div>
-                <div className="duration">00:02:47</div>
-              </li>
-              <li>
-                <div className="index">01</div>
-                <div className="details">
-                  <div className="title">Preface to the seventh edition</div>
-                  <div className="reader">Xiaoyan Arrowsmith</div>
-                </div>
-                <div className="duration">00:02:47</div>
-              </li>
-              <li>
-                <div className="index">01</div>
-                <div className="details">
-                  <div className="title">Preface to the seventh edition</div>
-                  <div className="reader">Xiaoyan Arrowsmith</div>
-                </div>
-                <div className="duration">00:02:47</div>
-              </li>
-              <li>
-                <div className="index">01</div>
-                <div className="details">
-                  <div className="title">Preface to the seventh edition</div>
-                  <div className="reader">Xiaoyan Arrowsmith</div>
-                </div>
-                <div className="duration">00:02:47</div>
-              </li>
-              <li>
-                <div className="index">01</div>
-                <div className="details">
-                  <div className="title">Preface to the seventh edition</div>
-                  <div className="reader">Xiaoyan Arrowsmith</div>
-                </div>
-                <div className="duration">00:02:47</div>
-              </li>
+              {this.state.chapters.map((chapter, key) => {
+                return this.buildChapterListItem(
+                  chapter.index,
+                  chapter.title,
+                  chapter.reader,
+                  key
+                );
+              })}
             </ol>
           </div>
           <div className="custom-field fields">
-            <form action="" onSubmit={(e) => this.handleSubmit(e)}>
+            <form
+              action="http://localhost:3001/audiotracks"
+              method="POST"
+              onSubmit={(e) => this.handleSubmit(e)}
+            >
               <label>Title</label>
               <input
                 type="text"
@@ -193,6 +215,7 @@ class ChapterAddBuilder extends Component {
               </div>
               <input
                 type="file"
+                name="audiotrack"
                 ref={this.fileInput}
                 accept="audio/mp3,audio/*;capture=microphone"
                 required
