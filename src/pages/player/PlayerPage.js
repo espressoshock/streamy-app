@@ -2,55 +2,135 @@ import React, { Component } from 'react';
 import AudiobookPreview from '../../components/audiobook-preview/AudiobookPreview';
 import AudioBookDescription from '../../components/audiobook-description/AudiobookDescription';
 import ChapterList from '../../components/chapter-list/ChapterList';
+import AudioPlayer from '../../components/audio-player/AudioPlayer';
+
+import { UserContext } from '../../contexts/UserContext';
 import './PlayerPage.css';
 
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { navigate } from '@reach/router';
+
 class PlayerPage extends Component {
-  state = {};
+  static contextType = UserContext;
+  state = {
+    anchorEl: null,
+  };
+
+  handleABookSelection = (audiobook) => {
+    console.log('clicked', audiobook);
+    this.context.selectAudiobook(audiobook);
+    this.setState({ selectedAudiobook: audiobook });
+  };
+  isABSelected = (audiobook) => {
+    return this.context.selectedAudiobook._id === audiobook._id;
+  };
+  handlePlayingTrackChange = (e) => {
+    this.context.selectChapter(e);
+    console.log('track clicked', e);
+  };
+  componentDidMount() {}
+  openMenu = (e) => {
+    this.setState({ anchorEl: e.currentTarget });
+  };
+  closeMenu = (e) => {
+    this.setState({ anchorEl: null });
+  };
+  signOut = (e) => {
+    this.context
+      .signOut()
+      .then((res) => {
+        navigate('/', { replace: true });
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
+  };
   render() {
     return (
       <div className="player-page">
         <div className="wrapper">
           <div className="shelf">
             <div className="header">
-              <div className="username">espressoshock</div>
+              <div className="account-dr-wrapper">
+                <div
+                  className="pointer username"
+                  aria-controls="simple-menu"
+                  aria-haspopup="true"
+                  onClick={(e) => {
+                    this.openMenu(e);
+                  }}
+                >
+                  {this.context.user.displayName}
+                </div>
+                <div
+                  className="pointer chev-down"
+                  aria-controls="simple-menu"
+                  aria-haspopup="true"
+                  onClick={(e) => {
+                    this.openMenu(e);
+                  }}
+                ></div>
+
+                <Menu
+                  id="simple-menu"
+                  anchorEl={this.state.anchorEl}
+                  keepMounted
+                  open={Boolean(this.state.anchorEl)}
+                  onClose={(e) => {
+                    this.closeMenu(e);
+                  }}
+                >
+                  <MenuItem onClick={this.closeMenu}>Add audiotrack</MenuItem>
+                  <MenuItem onClick={(e) => this.signOut()}>Logout</MenuItem>
+                </Menu>
+              </div>
+            </div>
+            <div className="selector">
+              <div className="select-item active">Audiobooks</div>
+              <div className="select-item">Favorites</div>
             </div>
             <div className="audiobook-list">
-              <AudiobookPreview
-                coverUrl="https://ia801403.us.archive.org/17/items/lifeofjohnruskin_2103_librivox/lifeofruskin_2103.jpg"
-                title="The Life of John Ruskine"
-                author="William Gershom"
-              />
-              <AudiobookPreview
-                coverUrl="https://ia801403.us.archive.org/17/items/lifeofjohnruskin_2103_librivox/lifeofruskin_2103.jpg"
-                title="The Life of John Ruskine"
-                author="William Gershom"
-              />
-              <AudiobookPreview
-                coverUrl="https://ia801403.us.archive.org/17/items/lifeofjohnruskin_2103_librivox/lifeofruskin_2103.jpg"
-                title="The Life of John Ruskine"
-                author="William Gershom"
-              />
-              <AudiobookPreview
-                coverUrl="https://ia801403.us.archive.org/17/items/lifeofjohnruskin_2103_librivox/lifeofruskin_2103.jpg"
-                title="The Life of John Ruskine"
-                author="William Gershom"
-              />
+              {this.context.audiobooks.map((audiobook, key) => {
+                return (
+                  <AudiobookPreview
+                    coverImage={audiobook.coverImage}
+                    title={audiobook.title}
+                    author={audiobook.author}
+                    selected={
+                      this.context.selectedAudiobook._id === audiobook._id
+                    }
+                    onClicked={(e) => {
+                      this.handleABookSelection(audiobook);
+                    }}
+                    key={key}
+                  />
+                );
+              })}
+              <div className="end-spacer"></div>
             </div>
           </div>
           <div className="drawer">
             <div className="book-description">
               <AudioBookDescription
-                coverUrl="https://ia801403.us.archive.org/17/items/lifeofjohnruskin_2103_librivox/lifeofruskin_2103.jpg"
-                title="The Life of John Ruskine"
-                author="William Gershom Collingwoodm"
-                description="W. G. Collingwood became a student of John Ruskin in 1872 when he started his study in University College, Oxford. For many years he dedicated himself to helping Ruskin as his resident assistant."
+                coverImage={this.context.selectedAudiobook.coverImage}
+                title={this.context.selectedAudiobook.title}
+                author={this.context.selectedAudiobook.author}
+                description={this.context.selectedAudiobook.description}
+                genre={this.context.selectedAudiobook.genre}
+                language={this.context.selectedAudiobook.language}
               />
             </div>
             <div className="chapter-list">
-              <ChapterList />
+              <ChapterList
+                onTrackChange={(e) => {
+                  this.handlePlayingTrackChange(e);
+                }}
+              />
             </div>
           </div>
-          <div className="audio-player"></div>
+          <div className="audio-player">
+            <AudioPlayer />
+          </div>
         </div>
       </div>
     );

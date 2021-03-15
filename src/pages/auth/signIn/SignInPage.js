@@ -47,7 +47,7 @@ class SignInPage extends Component {
               Invalid email or password!
             </div>
             <form action="" onSubmit={(e) => e.preventDefault()}>
-              <label for="email">Email</label>
+              <label>Email</label>
               <input
                 type="email"
                 name="email"
@@ -55,7 +55,7 @@ class SignInPage extends Component {
                 placeholder="example@email.com"
                 required
               />
-              <label for="password">Password</label>
+              <label>Password</label>
               <input
                 type="password"
                 name="password"

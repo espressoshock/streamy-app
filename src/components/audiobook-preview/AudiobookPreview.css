@@ -7,6 +7,13 @@
   transition: all 0.4s;
   display: inline-block;
   margin-left: 37px;
+  cursor: pointer;
+}
+.audiobook-preview.selected {
+  box-shadow: 0px 0px 20px 10px rgba(17, 21, 25, 0.5);
+  transform: scale(1.2);
+  border: 1px solid #4d545b;
+  border-radius: 7px;
 }
 .audiobook-preview:hover {
   transform: scale(1.2);
@@ -44,10 +51,17 @@
   font-size: 8pt;
   text-align: center;
   margin-bottom: -2px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
 }
 .audiobook-preview .text .author {
   color: #6b6e74;
   font-size: 7.5pt;
   text-align: left;
-  margin-left: 10px;
+  margin-left: 13px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  width: 70%;
 }
