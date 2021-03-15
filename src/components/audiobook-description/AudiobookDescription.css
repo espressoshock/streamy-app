@@ -15,7 +15,7 @@
   display: inline-block;
   position: absolute;
   top: -0;
-  width: 250px;
+  width: 240px;
   height: 230px;
   padding-left: 18px;
 }
@@ -28,6 +28,8 @@
   outline: none;
   border: none;
   transition: all 0.4s;
+  resize: none;
+  width: 220px;
 }
 .audiobook-description .text .description textarea.editable:hover {
   background-color: #292e34;
@@ -35,7 +37,7 @@
 }
 .audiobook-description .text .title input {
   color: #c8cace;
-  font-size: 15pt;
+  font-size: 12pt;
   font-weight: 800;
   text-align: left;
   margin-bottom: -2px;
@@ -44,6 +46,10 @@
   outline: none;
   border: none;
   transition: all 0.4s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 220px;
 }
 .audiobook-description .text .title input.editable:hover {
   background-color: #292e34;
@@ -61,6 +67,9 @@
   outline: none;
   border: none;
   transition: all 0.4s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .audiobook-description .text .author input.editable:hover {
   background-color: #292e34;
