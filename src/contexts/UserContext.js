@@ -52,7 +52,7 @@ class UserContextProvider extends Component {
     }
   };
   goNextChapter = () => {
-    if (this.getSelChapterPos() <= this.getSelTotalChapters()) {
+    if (this.getSelChapterPos() < this.getSelTotalChapters() - 1) {
       this.selectChapter(
         this.state.selectedAudiobook?.chapters[this.getSelChapterPos() + 1]
       );
