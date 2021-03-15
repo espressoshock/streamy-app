@@ -82,7 +82,7 @@ class PlayerPage extends Component {
                   }}
                 >
                   <MenuItem>
-                    <Link to="add" className="link">
+                    <Link to="/add" className="link">
                       Add audiobook
                     </Link>
                   </MenuItem>
@@ -92,7 +92,7 @@ class PlayerPage extends Component {
             </div>
             <div className="selector">
               <div className="select-item active">Audiobooks</div>
-              <div className="select-item">Favorites</div>
+              {/*  <div className="select-item">Favorites</div> */}
             </div>
             <div className="audiobook-list">
               {this.context.audiobooks.map((audiobook, key) => {

@@ -46,8 +46,8 @@ class AudioPlayer extends Component {
     });
   };
   async setDuration() {
-    while (this.audioElRef.current.duration === Infinity) {
-      await new Promise((r) => setTimeout(r, 1000));
+    while (this.audioElRef.current?.duration === Infinity) {
+      await new Promise((r) => setTimeout(r, 500));
     }
 
     this.setState({ trackDuration: this.audioElRef.current.duration });

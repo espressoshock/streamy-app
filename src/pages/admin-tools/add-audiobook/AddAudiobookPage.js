@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { UserContext } from '../../../contexts/UserContext';
 import './AddAudiobookPage.css';
 
+import { Link } from '@reach/router';
+
 import AudiobookAddBuilder from '../../../components/audiobook-add-builder/AudiobookAddBuilder';
 import ChapterAddBuilder from '../../../components/chapter-add-builder/ChapterAddBuilder';
 
@@ -25,7 +27,9 @@ class AddAudiobookPage extends Component {
       );
     return (
       <div className="add-audiobook-page">
-        <div className="close-button" />
+        <Link to="/player" className="link">
+          <div className="close-button" />
+        </Link>
         <div className="wrapper">{view}</div>
       </div>
     );
