@@ -3,6 +3,7 @@ import AudiobookPreview from '../../components/audiobook-preview/AudiobookPrevie
 import AudioBookDescription from '../../components/audiobook-description/AudiobookDescription';
 import ChapterList from '../../components/chapter-list/ChapterList';
 import AudioPlayer from '../../components/audio-player/AudioPlayer';
+import { Link } from '@reach/router';
 
 import { UserContext } from '../../contexts/UserContext';
 import './PlayerPage.css';
@@ -80,7 +81,11 @@ class PlayerPage extends Component {
                     this.closeMenu(e);
                   }}
                 >
-                  <MenuItem onClick={this.closeMenu}>Add audiotrack</MenuItem>
+                  <MenuItem>
+                    <Link to="add" className="link">
+                      Add audiobook
+                    </Link>
+                  </MenuItem>
                   <MenuItem onClick={(e) => this.signOut()}>Logout</MenuItem>
                 </Menu>
               </div>
