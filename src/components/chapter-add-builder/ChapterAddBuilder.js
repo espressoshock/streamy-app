@@ -110,7 +110,7 @@ class ChapterAddBuilder extends Component {
       <div className="a-name-viewer">{this.state.audiotrackData.name}</div>
     );
   };
-  buildChapterListItem = (index, title, reader, key) => {
+  buildChapterListItem = (index, title, reader, duration, key) => {
     return (
       <li key={key}>
         <div className="index">{this.formatIndex(index)}</div>
@@ -118,7 +118,7 @@ class ChapterAddBuilder extends Component {
           <div className="title">{title}</div>
           <div className="reader">{reader}</div>
         </div>
-        <div className="duration">{this.getCurrentDuration()}</div>
+        <div className="duration">{duration}</div>
       </li>
     );
   };
@@ -191,6 +191,7 @@ class ChapterAddBuilder extends Component {
                   chapter.index,
                   chapter.title,
                   chapter.reader,
+                  chapter.duration,
                   key
                 );
               })}
