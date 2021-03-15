@@ -41,9 +41,9 @@
 }
 .audiobook-preview .text {
   position: absolute;
-  width: 100%;
+  width: 80%;
   bottom: 0;
-  left: 0;
+  left: 14px;
   height: 42px;
 }
 .audiobook-preview .text .title {

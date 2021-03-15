@@ -92,6 +92,14 @@ class UserContextProvider extends Component {
       });
     });
   };
+  refreshContext = () => {
+    this.fetchAudioBooks().then((audiobooks) => {
+      console.log('audiobooks:', audiobooks);
+      this.setState({ audiobooks: audiobooks.data });
+      this.selectAudioook(audiobooks.data[0]);
+    });
+  };
+
   async fetchAudioBooks() {
     const response = await fetch('http://localhost:3001/audiobooks/');
     const audiobooks = await response.json();
@@ -130,6 +138,7 @@ class UserContextProvider extends Component {
           goNextChapter: this.goNextChapter,
           getSelChapterPos: this.getSelChapterPos,
           getSelTotalChapters: this.getSelTotalChapters,
+          refreshContext: this.refreshContext,
         }}
       >
         {this.props.children}

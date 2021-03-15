@@ -30,7 +30,9 @@ class PlayerPage extends Component {
     this.context.selectChapter(e);
     console.log('track clicked', e);
   };
-  componentDidMount() {}
+  componentDidMount() {
+    this.context?.refreshContext();
+  }
   openMenu = (e) => {
     this.setState({ anchorEl: e.currentTarget });
   };
