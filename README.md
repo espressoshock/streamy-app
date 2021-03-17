@@ -200,6 +200,8 @@ The platform provides a _REST Open API_ through its _NodeJS_ server with the fol
 
 ### Database infrastructure
 
+
+
 The _Streamy_ platform utilizes two database solutions in order to operate correctly.
 
 1. The _user data and authentication_ is stored and preocessed through the firebase infrastructure
