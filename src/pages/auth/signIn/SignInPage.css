@@ -70,3 +70,16 @@
 .signIn-page .error-message.visible {
   display: block;
 }
+.signIn-page .loader {
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background: #161c21;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
