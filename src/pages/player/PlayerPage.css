@@ -30,7 +30,7 @@
   display: inline-block;
 }
 .MuiListItem-root.disabled {
-  color: #85888e;
+  color: #c6cad2;
   cursor: default;
 }
 .MuiListItem-root.disabled:hover {
