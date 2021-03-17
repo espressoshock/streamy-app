@@ -16,7 +16,18 @@
 - [Routing](#routing)
 - [Application Context](#application-context)
   - [Methods provided](#methods-provided)
+- [Authentication](#authentication)
+  - [Firebase Config](#firebase-config)
+  - [User Types and Roles](#user-types-and-roles)
+  - [Custom Claims](#custom-claims)
+  - [ID Token](#id-token)
+  - [Serverless Cloud Functions](#serverless-cloud-functions)
+- [Backend](#backend)
+  - [REST API](#rest-api)
+  - [Database infrastructure](#database-infrastructure)
+  - [Audiotracks Storing](#audiotracks-storing)
 - [Design](#design)
+  - [Framework and technologies](#framework-and-technologies)
   - [User Interface](#user-interface)
     - [Views](#views)
       - [Splashscreen](#splashscreen)
@@ -26,7 +37,6 @@
       - [Publish audiobooks 1/2](#publish-audiobooks-12)
       - [Publish chapers 2/2](#publish-chapers-22)
     - [Logo and branding](#logo-and-branding)
-  - [Framework and technologies](#framework-and-technologies)
 
 ## Description
 
@@ -125,7 +135,97 @@ The _UserContext_, through his `UserContext.Provider`, supplies the following me
 
 ![UserContext Provider methods](./assets/user-context-methods-provider.png)
 
+## Authentication
+
+The user authentication has been implemented through the use of `firebase-auth` with the provided built-in SDKs and deployed on the _Google Cloud Platform_. 
+
+### Firebase Config
+
+The firebase config and credetials for the _Google Cloud Platform_ are stored in the `.env` file and attached through the `process.env`. 
+
+![.env file](./assets/firebase-config-screenshot.png)
+
+### User Types and Roles
+
+The platform design provision the following user types:
+
+1. `user`: regular user, with `-r` (_read_) privileges
+2. `admin`: platform admin, with `-rw` (_read/write_) privileges
+
+The users can be easily managed through the `firebase-console`
+
+![Firebase auth screenshot](./assets/firebase-auth-screenshot.png)
+
+### Custom Claims
+
+The [user types and roles](#user-types-and-roles) have been implemented through the definition of `custom security rules`. A _multi-level_ access control strategies has been implemented in order to differentiate and provide administrative and customized privileges to data and resources. 
+
+![custom claims](./assets/firebase-claims-rules.png)
+
+### ID Token
+
+Every generated ID Token that is passed between client and server at every session, contains the custom claims. The tokens are trasmitted and propagated at every sign-in or re-authentication. 
+
+### Serverless Cloud Functions
+
+The _Serverless_ [Firebase Cloud Functions](https://firebase.google.com/docs/functions) have been investigated and utilized in order to deploy the [Custom Claims](#custom-claims). 
+
+![claims cloud functions](./assets/firebase-nodejs-fas.png)
+
+> The functions have been written in NodeJS and its triggered in response to _HTTP Calls_ `http.onCall`
+
+![active cloud functions](./assets/firebase-fas-dashboard.png)
+
+## Backend
+
+The backend is written in _NodeJS_ and provides as a services access to the audiobook resources stored on a _MongoDB deployment._ 
+
+> If you wanna learn more about the _**NoSQL MongoDB deployment**_ and the server implementation, please refer to its github page:  [streamy-server](https://github.com/espressoshock/streamy-server) 
+
+### REST API
+
+The platform provides a _REST Open API_ through its _NodeJS_ server with the following __endpoints__:
+
+1. `GET`  `/audiobooks`
+2. `POST` `/audiobooks`
+3. `PUT` `/audiobooks/:audiobookID`
+4. `GET` `/audiobooks/:audiobookID`
+5. `DELETE` `/audiobooks/:audiobookID`
+6. `POST` `/audiobooks/:audiobookID/chapters`
+7. `PUT` `/audiobooks/:audiobookID/chapters/:chapterID`
+8. `GET` `/audiobooks/:audiobookID/chapters`
+9. `POST` `/audiotracks`
+10. `GET` `/audiotrack/:audiotrackID`
+
+### Database infrastructure
+
+The _Streamy_ platform utilizes two database solutions in order to operate correctly.
+
+1. The _user data and authentication_ is stored and preocessed through the firebase infrastructure
+2. The resources containing _big data_ such as books metadata as well as chapters and associated audiotracks are optimally stored in a MongoDB deployment with [GridFS](https://mongodb.github.io/node-mongodb-native/3.4/tutorials/gridfs/)
+
+### Audiotracks Storing 
+
 ## Design
+
+### Framework and technologies
+
+1. App packaging and distribution: 
+   1. `ElectronJS`
+      1. electron-forge | electron-builder | electron-packager
+2. Front-end JS Framework: 
+   1. `ReactJS`
+      1. Router: @reach-router
+3. Version control workflow: 
+   1. `GithubFlow`
+4. Data DB: 
+   1. `MongoDB` with `GridFS`
+5. Users DB:
+   1. `Firebase auth` with custom `claims`
+6. REST API:   
+   1. `NodeJS` and `ExpressJS`
+7. MServices: 
+   1. `Firebase cloud functions`
 
 ### User Interface
 
@@ -177,22 +277,3 @@ Here's a collection of all the most notable views within the _Streamy_ cross-pla
 <span style="display:block;text-align:center">
     <img src="./assets/streamy-logo.png" alt="Streamy splashscreen">
 </span>
-
-### Framework and technologies
-
-1. App packaging and distribution: 
-   1. `ElectronJS`
-      1. electron-forge | electron-builder | electron-packager
-2. Front-end JS Framework: 
-   1. `ReactJS`
-      1. Router: @reach-router
-3. Version control workflow: 
-   1. `GithubFlow`
-4. Data DB: 
-   1. `MongoDB` with `GridFS`
-5. Users DB:
-   1. `Firebase auth` with custom `claims`
-6. REST API:   
-   1. `NodeJS` and `ExpressJS`
-7. MServices: 
-   1. `Firebase cloud functions`
