@@ -26,6 +26,7 @@
   - [REST API](#rest-api)
   - [Database infrastructure](#database-infrastructure)
   - [Audiotracks Storing](#audiotracks-storing)
+  - [Audiotrack Streaming](#audiotrack-streaming)
 - [Design](#design)
   - [Framework and technologies](#framework-and-technologies)
   - [User Interface](#user-interface)
@@ -205,6 +206,20 @@ The _Streamy_ platform utilizes two database solutions in order to operate corre
 2. The resources containing _big data_ such as books metadata as well as chapters and associated audiotracks are optimally stored in a MongoDB deployment with [GridFS](https://mongodb.github.io/node-mongodb-native/3.4/tutorials/gridfs/)
 
 ### Audiotracks Storing 
+
+Due to the large size of the audiotracks, such documents are stored in a NoSQL MongoDB database as chuncks with the use of [GridFS](https://mongodb.github.io/node-mongodb-native/3.4/tutorials/gridfs/). Rather than storing the audiotracks in a single file, GridFS subdivides the document into multiple chunks of `255kB`, allowing more efficient storing but also _in order to facilitate the audio streaming operation_
+
+![MongoDB Chuncks](./assets/audiotrack-chunks.png)
+
+The chunks are stored alongside the file metadata
+
+![MongoDB Chuncks](./assets/audiotrack-metadata.png)
+
+### Audiotrack Streaming
+
+The `GET /audiotrack/:audiotrackID` endpoint serves the audiotracks as `audio/mp3` and the tracks are streamed in `chuncks` as they are retrived from the _MongoDB GridFS_ `bucket`
+
+![MongoDB Chuncks](./assets/audiotrack-streaming.png)
 
 ## Design
 
