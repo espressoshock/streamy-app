@@ -29,6 +29,13 @@
   background-size: contain;
   display: inline-block;
 }
+.MuiListItem-root.disabled {
+  color: #85888e;
+  cursor: default;
+}
+.MuiListItem-root.disabled:hover {
+  background: none;
+}
 /* ===============
    selector
    =============== */

@@ -92,6 +92,9 @@ class PlayerPage extends Component {
                     this.closeMenu(e);
                   }}
                 >
+                  <MenuItem className="disabled">
+                    Role: {this.context?.user?.isAdmin ? 'Admin' : 'User'}
+                  </MenuItem>
                   {menuItem}
                   <MenuItem onClick={(e) => this.signOut()}>Logout</MenuItem>
                 </Menu>
