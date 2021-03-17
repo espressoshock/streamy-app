@@ -24,9 +24,11 @@
   - [Serverless Cloud Functions](#serverless-cloud-functions)
 - [Backend](#backend)
   - [REST API](#rest-api)
+    - [REST API Testin (Postman)](#rest-api-testin-postman)
   - [Database infrastructure](#database-infrastructure)
   - [Audiotracks Storing](#audiotracks-storing)
   - [Audiotrack Streaming](#audiotrack-streaming)
+  - [Book Cover Image Encoding and Storing](#book-cover-image-encoding-and-storing)
 - [Design](#design)
   - [Framework and technologies](#framework-and-technologies)
   - [User Interface](#user-interface)
@@ -69,7 +71,7 @@ To facilitate development we added three scripts:
 2. `electron:start`: we utilized the wait-on to make sure React is running before starting ElectronJS
 3. `electron:build`: utilized to build our electron app
 
-![Package.json Scripts screenshot](assets/scripts-screenshot.PNG)
+![Package.json Scripts screenshot](assets/scripts-screenshot.png)
 
 ### Project structure
 
@@ -198,9 +200,11 @@ The platform provides a _REST Open API_ through its _NodeJS_ server with the fol
 9. `POST` `/audiotracks`
 10. `GET` `/audiotrack/:audiotrackID`
 
+#### REST API Testin (Postman)
+
+For a full REST-API explanation and testing with postman, please refer to its github page:  [streamy-server](https://github.com/espressoshock/streamy-server) 
+
 ### Database infrastructure
-
-
 
 The _Streamy_ platform utilizes two database solutions in order to operate correctly.
 
@@ -222,6 +226,12 @@ The chunks are stored alongside the file metadata
 The `GET /audiotrack/:audiotrackID` endpoint serves the audiotracks as `audio/mp3` and the tracks are streamed in `chuncks` as they are retrived from the _MongoDB GridFS_ `bucket`
 
 ![MongoDB Chuncks](./assets/audiotrack-streaming.png)
+
+### Book Cover Image Encoding and Storing
+
+All the books' covers are stored in `base64` rather than `binary` in order to facilitate the deserialization and _allow direct html-injection_
+
+![image encoding](./assets/db-image-encoding.png)
 
 ## Design
 
@@ -246,7 +256,7 @@ The `GET /audiotrack/:audiotrackID` endpoint serves the audiotracks as `audio/mp
 
 ### User Interface
 
-Streamy user interface has been designed from scratch with the users' needs in mind, trying to maximaxe usability and improve the user of experience.
+_Streamy_ user interface has been designed from scratch with _the users' needs in mind_, trying to maximize usability and improve the user experience.
 
 #### Views
 
