@@ -36,6 +36,7 @@ class SignInPage extends Component {
   render() {
     return (
       <div className="signIn-page">
+        {this.context?.user === null ? <div className="loader" /> : ''}
         <div className="wrapper">
           <div className="bold-logo"></div>
           <div className="dark-card">

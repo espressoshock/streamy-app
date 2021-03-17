@@ -117,6 +117,20 @@ class UserContextProvider extends Component {
     );
     return response.json();
   }
+  async deleteAudiobook(audiobookID) {
+    const response = await fetch(
+      'http://localhost:3001/audiobooks/' + audiobookID,
+      {
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    );
+    return response.json();
+  }
   async fetchAudioBooks() {
     const response = await fetch('http://localhost:3001/audiobooks/');
     const audiobooks = await response.json();
@@ -157,6 +171,7 @@ class UserContextProvider extends Component {
           getSelTotalChapters: this.getSelTotalChapters,
           refreshContext: this.refreshContext,
           updateAudiobook: this.updateAudiobook,
+          deleteAudiobook: this.deleteAudiobook,
         }}
       >
         {this.props.children}

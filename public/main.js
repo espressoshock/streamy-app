@@ -12,12 +12,28 @@ function createWindow() {
     autoHideMenuBar: true,
     frame: true,
     title: 'Streamy',
+    show: false,
     webPreferences: {
       enableRemoteModule: true,
     },
+    icon: __dirname + '/favicon.ico',
+  });
+  const splash = new BrowserWindow({
+    width: 400,
+    height: 200,
+    transparent: true,
+    frame: false,
+    alwaysOnTop: true,
   });
   win.setTitle('Streamy');
   win.loadURL('http://localhost:3000/');
+  splash.loadURL(`${__dirname}/splashscreen.html`);
+
+  // if main window is ready to show, then destroy the splash window and show up the main window
+  win.once('ready-to-show', () => {
+    splash.destroy();
+    win.show();
+  });
 }
 
 app.setName('Streamy');

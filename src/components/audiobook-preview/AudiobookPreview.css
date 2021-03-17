@@ -8,17 +8,26 @@
   display: inline-block;
   margin-left: 37px;
   cursor: pointer;
+  transition: all 0.6s;
 }
+.audiobook-preview.edit-enabled {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  animation-iteration-count: infinite;
+}
+
+.audiobook-preview:hover,
 .audiobook-preview.selected {
-  box-shadow: 0px 0px 20px 10px rgba(17, 21, 25, 0.5);
-  transform: scale(1.2);
-  border: 1px solid #4d545b;
-  border-radius: 7px;
-}
-.audiobook-preview:hover {
   transform: scale(1.2);
   transform-origin: center;
   box-shadow: 0px 0px 20px 10px rgba(17, 21, 25, 0.5);
+}
+.audiobook-preview.edit-enabled:hover {
+  transform: scale(1);
+  transform-origin: center;
+  box-shadow: none;
 }
 .audiobook-preview .container {
   width: 122px;
@@ -64,4 +73,45 @@
   overflow: hidden !important;
   text-overflow: ellipsis;
   width: 70%;
+}
+/* ===============
+   remove-button
+   =============== */
+.audiobook-preview .remove-button {
+  background-image: url('./assets/remove-button.png');
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 15px;
+  top: -30px;
+  display: none;
+}
+.audiobook-preview .remove-button.visible {
+  display: block;
+}
+/* ===============
+   shake-animation
+   =============== */
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0) scale(1);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0) scale(1);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0) scale(1);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0) scale(1);
+  }
 }

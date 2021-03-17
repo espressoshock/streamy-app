@@ -11,6 +11,12 @@ body,
   padding: 0 !important;
   width: 100%;
   background-color: #161c21;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 .pointer {
   cursor: pointer;
@@ -19,6 +25,7 @@ a.link {
   text-decoration: none;
   color: black;
 }
+
 /* ===============
    card
    =============== */
@@ -86,4 +93,5 @@ a.link {
   margin: 1em 6px;
   height: 38px;
   color: black;
+  cursor: pointer;
 }

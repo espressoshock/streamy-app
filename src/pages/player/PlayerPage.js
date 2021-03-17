@@ -48,6 +48,13 @@ class PlayerPage extends Component {
       })
       .catch((err) => console.log(err));
   };
+  onAudiobookRemove = (audiobookID) => {
+    console.log(audiobookID);
+    this.context.deleteAudiobook(audiobookID).then((res) => {
+      console.log(res);
+      this.context.refreshContext();
+    });
+  };
   render() {
     const menuItem = this.context?.user.isAdmin ? (
       <MenuItem>
@@ -92,6 +99,9 @@ class PlayerPage extends Component {
                     this.closeMenu(e);
                   }}
                 >
+                  <MenuItem className="disabled">
+                    Role: {this.context?.user?.isAdmin ? 'Admin' : 'User'}
+                  </MenuItem>
                   {menuItem}
                   <MenuItem onClick={(e) => this.signOut()}>Logout</MenuItem>
                 </Menu>
@@ -108,12 +118,16 @@ class PlayerPage extends Component {
                     coverImage={audiobook.coverImage}
                     title={audiobook.title}
                     author={audiobook.author}
+                    audiobookID={audiobook._id}
                     selected={
                       this.context.selectedAudiobook._id === audiobook._id
                     }
                     onClicked={(e) => {
                       this.handleABookSelection(audiobook);
                     }}
+                    onAudiobookRemove={(audiobookID) =>
+                      this.onAudiobookRemove(audiobookID)
+                    }
                     key={key}
                   />
                 );
