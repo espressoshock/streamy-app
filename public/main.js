@@ -15,6 +15,7 @@ function createWindow() {
     webPreferences: {
       enableRemoteModule: true,
     },
+    icon: __dirname + '/favicon.ico',
   });
   win.setTitle('Streamy');
   win.loadURL('http://localhost:3000/');
