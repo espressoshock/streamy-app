@@ -70,7 +70,8 @@
 .signIn-page .error-message.visible {
   display: block;
 }
-.signIn-page .loader {
+.signIn-page .loader,
+.signUp-page .loader {
   z-index: 1;
   width: 100vw;
   height: 100vh;
@@ -82,4 +83,17 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  animation: login-fade 2s;
+  animation-fill-mode: forwards;
+}
+@keyframes login-fade {
+  from {
+    opacity: 1;
+    display: block;
+  }
+  to {
+    opacity: 0;
+    display: none;
+    visibility: hidden;
+  }
 }

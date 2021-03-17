@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import './AudiobookPreview.css';
 
+import { UserContext } from '../../contexts/UserContext';
+
 class AudiobookPreview extends Component {
+  static contextType = UserContext;
   state = {
     holdTimer: null,
     deleteEnabled: false,
+    justToggled: false,
   };
   componentDidMount() {
     console.log(this.props.selected);
@@ -12,14 +16,19 @@ class AudiobookPreview extends Component {
   handleMouseDown = (e) => {
     this.setState({
       holdTimer: setTimeout(() => {
-        if (!this.props.selected)
+        if (!this.props.selected && this.context?.user?.isAdmin) {
           this.setState({ deleteEnabled: !this.state.deleteEnabled });
+          this.setState({ justToggled: true });
+        }
       }, 1000),
     });
   };
   handleMouseUp = (e) => {
     clearTimeout(this.state.holdTimer);
-    if (!this.state.deleteEnabled) this.props.onClicked();
+    this.setState({ justToggled: false });
+    if (!this.state.deleteEnabled && !this.state.justToggled) {
+      this.props.onClicked();
+    }
   };
   render() {
     const { coverImage, title, author, selected } = this.props;
@@ -32,7 +41,7 @@ class AudiobookPreview extends Component {
         onMouseUp={(e) => this.handleMouseUp(e)}
       >
         <div className="container">
-          <img src={coverImage} alt="" className="cover" />
+          <img src={coverImage} alt="" className="cover" draggable="false" />
           <div
             className={`remove-button ${
               this.state.deleteEnabled ? 'visible' : ''

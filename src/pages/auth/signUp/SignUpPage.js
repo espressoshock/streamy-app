@@ -27,6 +27,7 @@ class SignUpPage extends Component {
     return (
       <div className="signUp-page">
         <div className="wrapper">
+          <div className="loader" />
           <div className="bold-logo"></div>
           <div className="dark-card">
             <h1>Create an account</h1>
